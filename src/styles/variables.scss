@@ -3,7 +3,7 @@
 $font-stack: "Jost", "Source Sans Pro", sans-serif;
 $font-main: "Jost", sans-serif;
 $font-secondary: "Source Sans Pro", sans-serif;
-$main-color: #fefefe;
+$main-color: #000;
 
 /*Media quieries mixins*/
 
@@ -29,6 +29,11 @@ $main-color: #fefefe;
 }
 @mixin xl-devices {
   @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin xxl-devices {
+  @media (min-width: 1920px) {
     @content;
   }
 }

@@ -6,7 +6,9 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { getInitialization, getSneakersItemsList} from './redux/selectors/appSelectors';
 import { Preloader, SliderExample } from './components/common';
+import { Header, Main } from './components'
 import { initializeApp } from './redux/reducers/appReducer';
+import { Container } from 'semantic-ui-react'
 
 /* React Lazy example
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -34,12 +36,15 @@ const App = React.memo(
 
     return (
       <div className={styles.App}>
+          <Container>
         {/* <SliderExample /> */}
-        
+       < Header />
         <Switch>
+          <Route path="/" render={() => <Main />} />
           <Route path="*" render={() => <div>404 NOT FOUND</div>} />
           {/*<Route path="/profile/:userId?" render={() => <SuspendedProfile />} />*/}
         </Switch>
+        </Container>
       </div>
     );
   },

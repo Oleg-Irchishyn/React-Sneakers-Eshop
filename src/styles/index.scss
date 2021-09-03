@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
-@import './variables.scss';
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+@import "./variables.scss";
 
 html {
   height: 100%;
@@ -8,8 +8,11 @@ html {
 
 body {
   margin: 0;
+  padding: 90px;
   font-family: $font-stack;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  width: 100vw;
+  background: #e7f6ff;
 }
