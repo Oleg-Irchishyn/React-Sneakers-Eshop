@@ -1,0 +1,20 @@
+@import "../variables.scss";
+
+.headerWrapper {
+    position: relative;
+    width: 100%;
+    .header {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        &__logo {
+            position: relative;
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
