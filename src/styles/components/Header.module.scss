@@ -10,10 +10,74 @@
         justify-content: flex-start;
         align-items: center;
         &__logo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: column;
+            padding: 0 0 0 56px;
             position: relative;
+            font-family: $font-secondary;
             img {
                 max-width: 100%;
-                height: auto;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                object-fit: contain;
+            }
+        }
+        &__logo_title {
+            font-size: 20px;
+            line-height: 24px;
+            text-transform: uppercase;
+            color: $color-black;
+            font-weight: 700;
+            margin: 0;
+        }
+        &__logo_descr {
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 400;
+            color: $color-grey;
+            margin: 0;
+        }
+        &__cart {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: flex-start;
+            margin-left: auto;
+            cursor: pointer;
+            img {
+                max-width: 18px;
+                height: 18px;
+                width: 100%;
+                object-fit: contain;
+            }
+            span {
+                font-family: $font-main;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 17px;
+                color: #5c5c5c;
+                margin-left: 10px;
+            }
+        }
+        &__favourites {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: flex-start;
+            margin-left: 30px;
+            img {
+                max-width: 18px;
+                height: 18px;
+                width: 100%;
+                object-fit: contain;
             }
         }
     }
