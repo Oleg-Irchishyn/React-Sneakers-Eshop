@@ -22,6 +22,7 @@ const Cart = ({ toggleVisibleCart }) => {
     <div className={cn(styles.cart)}>
       <div className={cn(styles.cart__content)} ref={cartContentRef}>
         <h2 className={cn(styles.cart__title)}>Cart</h2>
+        <div className={cn(styles.close_btn)} onClick={() => toggleVisibleCart(false)}></div>
       </div>
     </div>
   );
