@@ -11,5 +11,11 @@ export const sneakersAPI = {
       .then(response => {
         return response.data;
       });
+  },
+  getSneakersTotalCount: () => {
+    return instance.get('totalItemsCount')
+      .then(response => {
+        return response.data;
+      });
   }
 }

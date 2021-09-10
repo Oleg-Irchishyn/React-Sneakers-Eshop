@@ -2,26 +2,33 @@ import { sneakersAPI } from "../../api/api";
 
 const INITIALIZED_SUCCESS = 'sneakers/app/INITIALIZED_SUCCESS';
 const SET_SNEAKERS_LIST = 'sneakers/app/SET_SNEAKERS_LIST';
+const SET_TOTAL_SNEAKERS_COUNT = 'sneakers/app/SET_TOTAL_SNEAKERS_COUNT';
 
 let initialState = {
   initialized: false,
   sneakers: [],
+  totalSneakersCount: null,
 }
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case INITIALIZED_SUCCESS:
+      return {
+        ...state,
+        initialized: true
+      };
     case SET_SNEAKERS_LIST: {
       return {
         ...state,
         sneakers: action.payload,
       };
     };
-    case INITIALIZED_SUCCESS:
+    case SET_TOTAL_SNEAKERS_COUNT: {
       return {
         ...state,
-        initialized: true
-      }
-
+        totalSneakersCount: action.payload,
+      };
+    };
     default:
       return state;
   }
@@ -31,9 +38,14 @@ export const actions = {
   initializedSuccess: () => ({ type: INITIALIZED_SUCCESS }),
   setSneakersList: (sneakers) =>
     ({ type: SET_SNEAKERS_LIST, payload: sneakers }),
+  setTotalSneakersCount: (totalSneakersCount) =>
+    ({ type: SET_TOTAL_SNEAKERS_COUNT, payload: totalSneakersCount }),
 }
 
-
+export const getTotalSneakersCount = () => async (dispatch) => {
+  let data = await sneakersAPI.getSneakersTotalCount();
+  dispatch(actions.setTotalSneakersCount(data));
+};
 
 export const getSneakersList = () => async (dispatch) => {
   let data = await sneakersAPI.getSneakers();
@@ -41,8 +53,12 @@ export const getSneakersList = () => async (dispatch) => {
 };
 
 export const initializeApp = () => (dispatch) => {
-  let SneakersListPromise = dispatch(getSneakersList());
-  Promise.all([SneakersListPromise]).then(() => {
+  let promises = [
+    dispatch(getTotalSneakersCount()),
+    dispatch(getSneakersList()),
+  ]
+  // let SneakersListPromise = dispatch(getSneakersList());
+  Promise.all([promises]).then(() => {
     dispatch(actions.initializedSuccess());
   });
 }
