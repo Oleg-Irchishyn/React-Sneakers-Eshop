@@ -1,8 +1,25 @@
 import React from 'react';
 import styles from '../../styles/components/Main.module.scss';
+import { SneakersItem } from '../';
 import cn from 'classnames';
+import { getSneakersItemsList, getTotalSneakersCount } from '../../redux/selectors/appSelectors';
+import { loadMoreSneakers } from '../../redux/reducers/appReducer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-const Main = () => {
+const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount }) => {
+  let [startPortion, setStartPortion] = React.useState(null);
+  let [endPortion, setEndPortion] = React.useState(4);
+  const loadMoreItems = (e) => {
+    setEndPortion((endPortion = endPortion + 4));
+    setStartPortion(0);
+    loadMoreSneakers(startPortion, endPortion);
+  };
+
+  React.useEffect(() => {
+    localStorage.setItem('sneakersListItems', JSON.stringify(sneakers));
+  }, [loadMoreItems]);
+
   return (
     <div className={cn(styles.main)}>
       <div className={cn(styles.main__slider_section)}></div>
@@ -12,8 +29,28 @@ const Main = () => {
           <input type="text" autoComplete="off" placeholder="Search By Name..." />
         </div>
       </div>
+      <div className={cn(styles.main__content_section)}>
+        <div className={cn(styles.section_items)}>
+          {sneakers &&
+            sneakers.map((elem) => {
+              return <SneakersItem key={elem.id} {...elem} />;
+            })}
+        </div>
+        <button
+          className={cn(styles.section__add_btn, styles.btn_add, {
+            [styles.disabled]: sneakers && sneakers.length === totalSneakersCount,
+          })}
+          onClick={(e) => loadMoreItems(e)}>
+          Load More
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  sneakers: getSneakersItemsList(state),
+  totalSneakersCount: getTotalSneakersCount(state),
+});
+
+export default compose(connect(mapStateToProps, { loadMoreSneakers }))(Main);

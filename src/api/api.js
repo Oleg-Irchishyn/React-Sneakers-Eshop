@@ -6,14 +6,14 @@ const instance = axios.create({
 });
 
 export const sneakersAPI = {
-  getSneakers: (portionStart = 0, portionLimit = 6) => {
+  getSneakers: (portionStart = 0, portionLimit = 4) => {
     return instance.get(`sneakers?_start=${portionStart}&_limit=${portionLimit}`,)
       .then(response => {
         return response.data;
       });
   },
   getSneakersTotalCount: () => {
-    return instance.get('totalItemsCount')
+    return instance.get(`totalItemsCount`)
       .then(response => {
         return response.data;
       });

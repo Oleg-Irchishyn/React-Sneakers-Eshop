@@ -1,5 +1,7 @@
 {
-  "totalItemsCount": 11,
+  "totalItemsCount": {
+    "count": 12
+  },
     "sneakers": [
       {
         "id": 0,
@@ -97,5 +99,15 @@
         "favourite": false,
         "selected": false
       }
-    ]
+    ],
+    "Cart": {
+      "items": [
+
+      ]
+    },
+    "Favourites": {
+      "items": [
+        
+      ]
+    }
 }

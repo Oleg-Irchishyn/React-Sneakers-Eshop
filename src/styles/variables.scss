@@ -6,9 +6,10 @@ $font-secondary: "Source Sans Pro", sans-serif;
 $color-black: #000;
 $color-white: #fff;
 $color-grey: #9d9d9d;
+$btn-bg: #9dd558;
+$active-btn-bg: linear-gradient(180deg, #89f09c 0%, #3cc755 100%);
 
 /*Media quieries mixins*/
-
 @mixin xs-devices {
   @media (max-width: 575px) {
     @content;
@@ -42,5 +43,18 @@ $color-grey: #9d9d9d;
 @mixin landscape-orientation {
   @media (max-width: 991px) and (orientation: landscape) {
     @content;
+  }
+}
+
+/* keyframes */
+@keyframes disableBtn {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    height: 0;
+    pointer-events: none;
+    min-height: initial;
   }
 }

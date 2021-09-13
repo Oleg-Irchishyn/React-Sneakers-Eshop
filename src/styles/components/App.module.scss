@@ -1,9 +1,7 @@
 @import "../variables.scss";
 
 .App {
-  background: #ffffff;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
-  border-radius: 20px;
+  background: #e7f6ff;
   color: $color-black;
   font-family: inherit;
   display: flex;
@@ -13,7 +11,13 @@
   height: 100%;
   width: 100%;
   max-width: 100%;
-  padding: 40px;
+  padding: 90px;
+  .app_container {
+    background: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 20px;
+    padding: 40px;
+  }
   @include xs-devices {
     padding: 15px;
   }

@@ -49,6 +49,7 @@
                 visibility: visible;
             }
             input {
+                width: 100%;
                 padding: 15px 15px 15px 46px;
                 border: 1px solid #f3f3f3;
                 border-radius: inherit;
@@ -74,5 +75,311 @@
                 }
             }
         }
+    }
+    &__content_section {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 40px 0 0 0;
+        .section_items {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: stretch;
+            width: 100%;
+            .item {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                background: #ffffff;
+                border: 1px solid #f3f3f3;
+                box-sizing: border-box;
+                border-radius: 40px;
+                padding: 30px;
+                max-width: 23%;
+                width: 100%;
+                margin: 0 auto 40px 0;
+                &:nth-of-type(4n) {
+                    margin-right: 0;
+                }
+                @include xs-devices {
+                    max-width: 100%;
+                }
+                @include sm-devices {
+                    max-width: 100%;
+                }
+                &__img {
+                    max-width: 133px;
+                    width: 100%;
+                    height: 112px;
+                    position: relative;
+                    img {
+                        max-width: 100%;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+                &__favourite_icon {
+                    position: absolute;
+                    left: calc(0% + 30px);
+                    top: calc(0% + 30px);
+                    background: #ffffff;
+                    border: 1px solid #eee;
+                    box-sizing: border-box;
+                    border-radius: 7px;
+                    width: 32px;
+                    height: 32px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    z-index: 2;
+                    &.active {
+                        background: #fef0f0;
+                        border: 1px solid #fef0f0;
+                    }
+
+                    img {
+                        max-width: 14.4px;
+                        width: 100%;
+                        height: 12.8px;
+                    }
+                }
+                &__title {
+                    font-family: $font-main;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 17px;
+                    color: $color-black;
+                    word-break: break-word;
+                    margin: 0;
+                    text-align: left;
+                    padding: 14px 0 0 0;
+                    flex: 1;
+                    width: 100%;
+                }
+                &__price_section {
+                    position: relative;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    flex: 1;
+                    padding: 14px 0 0 0;
+                    width: 100%;
+                    .section__left_side {
+                        position: relative;
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: flex-start;
+                        height: 100%;
+                        .section__title {
+                            width: 100%;
+                            font-family: $font-main;
+                            font-weight: 500;
+                            font-size: 13px;
+                            line-height: 13px;
+                            text-align: left;
+                            letter-spacing: 0.5px;
+                            text-transform: uppercase;
+                            color: $color-grey;
+                            margin-bottom: 2px;
+                        }
+                        .section__cost {
+                            font-family: $font-main;
+                            font-weight: 700;
+                            font-size: 14px;
+                            line-height: 17px;
+                            color: $color-black;
+                        }
+                    }
+                    .section__right_side {
+                        position: relative;
+                        max-width: 30%;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        justify-content: flex-end;
+                        height: 100%;
+                        .section__add_to_cart_btn {
+                            display: inline-flex;
+                            flex-wrap: wrap;
+                            position: relative;
+                            background: #ffffff;
+                            border: 1px solid #f2f2f2;
+                            box-sizing: border-box;
+                            border-radius: 8px;
+                            width: 32px;
+                            height: 32px;
+                            cursor: pointer;
+                            text-align: center;
+                            text-decoration: none;
+                            transition: 0.2s ease;
+                            &:focus {
+                                text-decoration: none;
+                                outline: none;
+                            }
+                            &:hover {
+                                @media (min-width: 992px) {
+                                    background: $active-btn-bg;
+                                    transition: 0.2s ease;
+                                    &::before {
+                                        background: #fff;
+                                        left: 57%;
+                                        top: 50%;
+                                        transform: translate(-50%, -50%) rotate(315deg);
+                                        transition: 0.2s ease;
+                                    }
+                                    &::after {
+                                        left: 37%;
+                                        top: 52%;
+                                        transform: translate(-50%, -50%) rotate(42deg);
+                                        background: #fff;
+                                        width: 6px;
+                                        height: 2px;
+                                        transition: 0.2s ease;
+                                    }
+                                }
+                            }
+                            &.active {
+                                background: $active-btn-bg;
+                                border: none;
+                                &::before,
+                                &::after {
+                                    display: none;
+                                }
+                            }
+                            .checkmarked {
+                                display: none;
+                                font-size: 20px;
+                                color: #fff;
+                                margin: 0 auto;
+                            }
+                            &::before {
+                                display: block;
+                                content: "";
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%, -50%) rotate(180deg);
+                                background: #b5b5b5;
+                                width: 11px;
+                                height: 2px;
+                                transition: 0.2s ease;
+                            }
+                            &::after {
+                                display: block;
+                                content: "";
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%, -50%) rotate(90deg);
+                                background: #b5b5b5;
+                                width: 11px;
+                                height: 2px;
+                                transition: 0.2s ease;
+                            }
+                        }
+                    }
+                }
+                &__add_amount_section {
+                    position: relative;
+                    display: Flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    padding: 14px 0 0 0;
+                    .plus {
+                        position: relative;
+                        margin: 0;
+                        line-height: 1;
+                        padding: 16px;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 11px;
+                            height: 2px;
+                            background: $color-black;
+                        }
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%) rotate(180deg);
+                            width: 2px;
+                            height: 11px;
+                            background: $color-black;
+                        }
+                    }
+                    .amount {
+                        font-size: 16px;
+                        color: $color-black;
+                        margin: 0 10px;
+                    }
+                    .minus {
+                        position: relative;
+                        margin: 0;
+                        line-height: 1;
+                        padding: 16px;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 11px;
+                            height: 2px;
+                            background: $color-black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section__add_btn,
+.btn_add {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0 auto;
+    background: $btn-bg;
+    border: none;
+    border-radius: 18px;
+    font-family: $font-secondary;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+    max-width: 177px;
+    width: 100%;
+    min-height: 47px;
+    word-break: break-word;
+    &:hover,
+    &:focus {
+        transition: 0.2s ease;
+        background: $active-btn-bg;
+    }
+    &.disabled {
+        animation: disableBtn 0.4s ease-in-out forwards;
     }
 }

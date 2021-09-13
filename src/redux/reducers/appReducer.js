@@ -6,7 +6,7 @@ const SET_TOTAL_SNEAKERS_COUNT = 'sneakers/app/SET_TOTAL_SNEAKERS_COUNT';
 
 let initialState = {
   initialized: false,
-  sneakers: [],
+  sneakers: JSON.parse(localStorage.getItem('sneakersListItems')) || [],
   totalSneakersCount: null,
 }
 
@@ -42,9 +42,9 @@ export const actions = {
     ({ type: SET_TOTAL_SNEAKERS_COUNT, payload: totalSneakersCount }),
 }
 
-export const getTotalSneakersCount = () => async (dispatch) => {
+export const getTotalSneakersItemsCount = () => async (dispatch) => {
   let data = await sneakersAPI.getSneakersTotalCount();
-  dispatch(actions.setTotalSneakersCount(data));
+  dispatch(actions.setTotalSneakersCount(data.count));
 };
 
 export const getSneakersList = () => async (dispatch) => {
@@ -52,12 +52,16 @@ export const getSneakersList = () => async (dispatch) => {
   dispatch(actions.setSneakersList(data));
 };
 
+export const loadMoreSneakers = (startCount, endCount) => async (dispatch) => {
+  let data = await sneakersAPI.getSneakers(startCount, endCount);
+  dispatch(actions.setSneakersList(data));
+};
+
 export const initializeApp = () => (dispatch) => {
   let promises = [
-    dispatch(getTotalSneakersCount()),
+    dispatch(getTotalSneakersItemsCount()),
     dispatch(getSneakersList()),
   ]
-  // let SneakersListPromise = dispatch(getSneakersList());
   Promise.all([promises]).then(() => {
     dispatch(actions.initializedSuccess());
   });
