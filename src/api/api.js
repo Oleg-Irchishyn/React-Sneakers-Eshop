@@ -17,5 +17,15 @@ export const sneakersAPI = {
       .then(response => {
         return response.data;
       });
-  }
+  },
+  changeSneakersSelectedStatus: (id, newVal) => {
+    return instance
+      .patch(`sneakers/` + id, { selected: newVal })
+      .then((response) => response.data);
+  },
+  changeSneakersFavouriteStatus: (id, newVal) => {
+    return instance
+      .patch(`sneakers/` + id, { favourite: newVal })
+      .then((response) => response.data);
+  },
 }

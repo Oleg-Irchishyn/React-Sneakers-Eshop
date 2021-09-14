@@ -3,9 +3,16 @@ import cn from 'classnames';
 import styles from '../../../styles/components/Main.module.scss';
 import favouriteIcon from '../../../assets/images/item-icons/favourite.png';
 import favouriteIconActive from '../../../assets/images/item-icons/favourite-pink.png';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { setNewSneakersItemSelectedStatus } from '../../../redux/reducers/appReducer';
 
-export const SneakersItem = (props) => {
-  const { id, imageUrl, title, price, favourite, selected } = props;
+export const SneakersItem = ({ setNewSneakersItemSelectedStatus, ...restProps }) => {
+  const { id, imageUrl, title, price, favourite, selected } = restProps;
+
+  const changeSelectedStatus = (id, newVal) => {
+    setNewSneakersItemSelectedStatus(id, newVal);
+  };
   return (
     <div className={cn(styles.item)}>
       <div
@@ -24,15 +31,24 @@ export const SneakersItem = (props) => {
           <span className={cn(styles.section__cost)}>{`${price} USD`}</span>
         </div>
         <div className={cn(styles.section__right_side)}>
-          <a
-            title="add to cart"
-            rel="nofollow"
-            target="_self"
-            className={cn(styles.section__add_to_cart_btn, {
-              [styles.active]: selected,
-            })}>
-            {selected ? <span className={cn(styles.checkmarked)}>&#10003;</span> : ''}
-          </a>
+          {!selected && (
+            <a
+              title="add to cart"
+              rel="nofollow"
+              target="_self"
+              className={cn(styles.section__add_to_cart_btn)}
+              onClick={() => changeSelectedStatus(id, true)}></a>
+          )}
+          {selected && (
+            <a
+              title="item added to cart"
+              rel="nofollow"
+              target="_self"
+              className={cn(styles.section__selected_btn)}
+              onClick={() => changeSelectedStatus(id, false)}>
+              <span className={cn(styles.checkmarked)}>&#10003;</span>
+            </a>
+          )}
         </div>
       </div>
       {selected ? (
@@ -46,4 +62,4 @@ export const SneakersItem = (props) => {
   );
 };
 
-export default SneakersItem;
+export default compose(connect(null, { setNewSneakersItemSelectedStatus }))(SneakersItem);

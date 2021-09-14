@@ -11,3 +11,8 @@ export const getTotalSneakersCount = (state) => {
 export const getInitialization = (state) => {
   return state.app.initialized;
 }
+
+export const getIsLoading = (state) => {
+  return state.app.isLoading;
+}
+

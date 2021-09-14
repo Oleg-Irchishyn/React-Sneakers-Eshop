@@ -2,12 +2,17 @@ import React from 'react';
 import styles from '../../styles/components/Main.module.scss';
 import { SneakersItem } from '../';
 import cn from 'classnames';
-import { getSneakersItemsList, getTotalSneakersCount } from '../../redux/selectors/appSelectors';
+import {
+  getIsLoading,
+  getSneakersItemsList,
+  getTotalSneakersCount,
+} from '../../redux/selectors/appSelectors';
 import { loadMoreSneakers } from '../../redux/reducers/appReducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Preloader, SekeletonPrelaoder } from '../common/';
 
-const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount }) => {
+const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount, isLoading }) => {
   let [startPortion, setStartPortion] = React.useState(null);
   let [endPortion, setEndPortion] = React.useState(4);
   const loadMoreItems = (e) => {
@@ -19,6 +24,10 @@ const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount }) => {
   React.useEffect(() => {
     localStorage.setItem('sneakersListItems', JSON.stringify(sneakers));
   }, [loadMoreItems]);
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <div className={cn(styles.main)}>
@@ -32,8 +41,14 @@ const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount }) => {
       <div className={cn(styles.main__content_section)}>
         <div className={cn(styles.section_items)}>
           {sneakers &&
-            sneakers.map((elem) => {
-              return <SneakersItem key={elem.id} {...elem} />;
+            sneakers.map((elem, index) => {
+              {
+                return isLoading ? (
+                  <SekeletonPrelaoder key={`${index}_yo`} />
+                ) : (
+                  <SneakersItem key={elem.id} {...elem} />
+                );
+              }
             })}
         </div>
         <button
@@ -51,6 +66,7 @@ const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount }) => {
 const mapStateToProps = (state) => ({
   sneakers: getSneakersItemsList(state),
   totalSneakersCount: getTotalSneakersCount(state),
+  isLoading: getIsLoading(state),
 });
 
 export default compose(connect(mapStateToProps, { loadMoreSneakers }))(Main);
