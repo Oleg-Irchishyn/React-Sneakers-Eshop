@@ -25,7 +25,7 @@
       "title": " Nike Blazer Mid Suede White",
       "price": 313.77,
       "favourite": false,
-      "selected": false
+      "selected": true
     },
     {
       "id": 3,
@@ -33,7 +33,7 @@
       "title": "Puma X Aka Boku Future Rider",
       "price": 600.99,
       "favourite": false,
-      "selected": false
+      "selected": true
     },
     {
       "id": 4,
@@ -100,10 +100,10 @@
       "selected": false
     }
   ],
-  "Cart": {
+  "сart": {
     "items": []
   },
-  "Favourites": {
+  "favourites": {
     "items": []
   }
 }

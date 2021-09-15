@@ -73,4 +73,9 @@
         margin: 0;
         text-align: left;
     }
+    &__items_wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
 }

@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Preloader, SekeletonPrelaoder } from '../common/';
 
-const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount, isLoading }) => {
+const Main = React.memo(({ sneakers, loadMoreSneakers, totalSneakersCount, isLoading }) => {
   let [startPortion, setStartPortion] = React.useState(null);
   let [endPortion, setEndPortion] = React.useState(4);
   const loadMoreItems = (e) => {
@@ -61,7 +61,7 @@ const Main = ({ sneakers, loadMoreSneakers, totalSneakersCount, isLoading }) => 
       </div>
     </div>
   );
-};
+});
 
 const mapStateToProps = (state) => ({
   sneakers: getSneakersItemsList(state),

@@ -28,4 +28,16 @@ export const sneakersAPI = {
       .patch(`sneakers/` + id, { favourite: newVal })
       .then((response) => response.data);
   },
+  addItemToCart: (
+    id,
+    imageUrl,
+    title,
+    price,
+  ) => {
+    return instance
+      .post(`cart`, { id, imageUrl, title, price })
+      .then((response) => {
+        return response.data;
+      });
+  },
 }

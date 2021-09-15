@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { getInitialization, getSneakersItemsList } from './redux/selectors/appSelectors';
+import { getInitialization } from './redux/selectors/appSelectors';
 import { Preloader, SliderExample } from './components/common';
 import { Header, Main } from './components';
 import { initializeApp } from './redux/reducers/appReducer';
@@ -16,7 +16,7 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 const SuspendedProfile = withSuspense(ProfileContainer);
 */
 
-const App = React.memo(({ initializeApp, initialized, sneakers }) => {
+const App = React.memo(({ initializeApp, initialized }) => {
   React.useEffect(() => {
     initializeApp();
   }, []);
@@ -50,7 +50,6 @@ const App = React.memo(({ initializeApp, initialized, sneakers }) => {
 
 const mapStateToProps = (state) => ({
   initialized: getInitialization(state),
-  sneakers: getSneakersItemsList(state),
 });
 
 export default compose(connect(mapStateToProps, { initializeApp }), withRouter)(App);

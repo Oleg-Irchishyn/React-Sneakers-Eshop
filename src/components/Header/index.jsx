@@ -6,7 +6,7 @@ import cartIcon from '../../assets/images/cart.svg';
 import favorIcon from '../../assets/images/favourite.svg';
 import { Cart } from '../index';
 
-const Header = () => {
+const Header = React.memo(() => {
   const [visibleCart, toggleVisibleCart] = React.useState(false);
   const handleCartVisibility = () => {
     toggleVisibleCart(true);
@@ -30,6 +30,6 @@ const Header = () => {
       {visibleCart ? <Cart toggleVisibleCart={toggleVisibleCart} /> : null}
     </div>
   );
-};
+});
 
 export default Header;
