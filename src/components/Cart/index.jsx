@@ -11,6 +11,10 @@ import {
 import { CartItem } from '../index';
 
 const Cart = React.memo(({ toggleVisibleCart, items }) => {
+  const addedCartItems = Object.keys(items).map((item) => {
+    return items[item].items[0];
+  });
+
   const cartContentRef = React.useRef(null);
 
   const handleCartOutsideClick = React.useCallback((e) => {
@@ -37,7 +41,9 @@ const Cart = React.memo(({ toggleVisibleCart, items }) => {
         <div className={cn(styles.close_btn)} onClick={() => toggleVisibleCart(false)}></div>
         <div className={cn(styles.cart__items_wrapper)}>
           <div className={cn(styles.cart__items)}>
-            {items && Object.keys(items).map((item) => <CartItem key={item.id} {...item} />)}
+            {addedCartItems.map((item, index) => (
+              <CartItem key={`${item}_${index}`} {...item} totalPrice={items[item.id].totalPrice} />
+            ))}
           </div>
         </div>
       </div>

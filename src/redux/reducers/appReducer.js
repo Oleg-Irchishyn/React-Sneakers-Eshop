@@ -73,6 +73,7 @@ export const actions = {
 export const getTotalSneakersItemsCount = () => async (dispatch) => {
   let data = await sneakersAPI.getSneakersTotalCount();
   dispatch(actions.setTotalSneakersCount(data.count));
+  dispatch(actions.setIsLoaded(false));
 };
 
 export const getSneakersList = () => async (dispatch) => {

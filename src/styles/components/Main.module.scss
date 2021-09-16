@@ -285,53 +285,6 @@
                     justify-content: center;
                     width: 100%;
                     padding: 14px 0 0 0;
-                    .plus {
-                        position: relative;
-                        margin: 0;
-                        line-height: 1;
-                        padding: 16px;
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            left: 50%;
-                            top: 50%;
-                            transform: translate(-50%, -50%);
-                            width: 11px;
-                            height: 2px;
-                            background: $color-black;
-                        }
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            left: 50%;
-                            top: 50%;
-                            transform: translate(-50%, -50%) rotate(180deg);
-                            width: 2px;
-                            height: 11px;
-                            background: $color-black;
-                        }
-                    }
-                    .amount {
-                        font-size: 16px;
-                        color: $color-black;
-                        margin: 0 10px;
-                    }
-                    .minus {
-                        position: relative;
-                        margin: 0;
-                        line-height: 1;
-                        padding: 16px;
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            left: 50%;
-                            top: 50%;
-                            transform: translate(-50%, -50%);
-                            width: 11px;
-                            height: 2px;
-                            background: $color-black;
-                        }
-                    }
                     .add_item_btn {
                     }
                 }
