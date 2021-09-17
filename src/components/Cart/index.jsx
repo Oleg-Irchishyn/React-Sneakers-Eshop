@@ -3,11 +3,7 @@ import styles from '../../styles/components/Cart.module.scss';
 import cn from 'classnames';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import {
-  getCartItems,
-  getCartItemsTotalCount,
-  getCartItemsTotalPrice,
-} from '../../redux/selectors/cartSelectors';
+import { getCartItems } from '../../redux/selectors/cartSelectors';
 import { CartItem } from '../index';
 
 const Cart = React.memo(({ toggleVisibleCart, items }) => {
@@ -42,7 +38,12 @@ const Cart = React.memo(({ toggleVisibleCart, items }) => {
         <div className={cn(styles.cart__items_wrapper)}>
           <div className={cn(styles.cart__items)}>
             {addedCartItems.map((item, index) => (
-              <CartItem key={`${item}_${index}`} {...item} totalPrice={items[item.id].totalPrice} />
+              <CartItem
+                key={`${item}_${index}`}
+                {...item}
+                totalPrice={items[item.id].totalPrice}
+                totalCount={items[item.id].items.length}
+              />
             ))}
           </div>
         </div>
@@ -53,8 +54,6 @@ const Cart = React.memo(({ toggleVisibleCart, items }) => {
 
 const mapStateToProps = (state) => ({
   items: getCartItems(state),
-  totalPrice: getCartItemsTotalPrice(state),
-  totalCount: getCartItemsTotalCount(state),
 });
 
 export default compose(connect(mapStateToProps, {}))(Cart);

@@ -5,8 +5,18 @@ import logo from '../../assets/images/logo.svg';
 import cartIcon from '../../assets/images/cart.svg';
 import favorIcon from '../../assets/images/favourite.svg';
 import { Cart } from '../index';
+import {
+  getCartItemsTotalCount,
+  getCartItemsTotalPrice,
+} from '../../redux/selectors/cartSelectors';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
-const Header = React.memo(() => {
+const Header = React.memo(({ totalCount, totalPrice }) => {
+  React.useEffect(() => {
+    localStorage.setItem('sneakersCartItemsTotalPrice', JSON.stringify(totalPrice));
+    localStorage.setItem('sneakersCartItemsTotalCount', JSON.stringify(totalCount));
+  });
   const [visibleCart, toggleVisibleCart] = React.useState(false);
   const handleCartVisibility = () => {
     toggleVisibleCart(true);
@@ -20,8 +30,11 @@ const Header = React.memo(() => {
           <p className={cn(styles.header__logo_descr)}>The Best Sneakers Shop</p>
         </div>
         <div className={cn(styles.header__cart)} onClick={handleCartVisibility}>
+          {totalCount && totalCount > 0 ? (
+            <i className={cn(styles.header__cart_amount)}>{totalCount}</i>
+          ) : null}
           <img src={cartIcon} alt="cart icon" />
-          <span className={cn(styles.cart__money_sum)}>0 usd</span>
+          <span className={cn(styles.cart__money_sum)}>{`${totalPrice} USD`}</span>
         </div>
         <div className={cn(styles.header__favourites)}>
           <img src={favorIcon} alt="favourites icon" />
@@ -32,4 +45,9 @@ const Header = React.memo(() => {
   );
 });
 
-export default Header;
+const mapStateToProps = (state) => ({
+  totalPrice: getCartItemsTotalPrice(state),
+  totalCount: getCartItemsTotalCount(state),
+});
+
+export default compose(connect(mapStateToProps, {}))(Header);

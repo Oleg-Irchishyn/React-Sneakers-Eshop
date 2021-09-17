@@ -9,7 +9,6 @@ import { actions as cartActions } from '../../../redux/reducers/cartReducer';
 
 const SneakersItem = React.memo(
   ({ setNewSneakersItemSelectedStatus, addSneakersToCart, removeCartItem, ...restProps }) => {
-    const [selected, setSelected] = React.useState(false);
     const { id, imageUrl, title, price, favourite } = restProps;
 
     const handleAddItemToCart = () => {
@@ -20,14 +19,6 @@ const SneakersItem = React.memo(
         price,
       };
       addSneakersToCart(object);
-      setSelected(true);
-    };
-
-    const handleRemoveCartItem = (id) => {
-      if (window.confirm('Do yo want to remove this sneaker?')) {
-        removeCartItem(id);
-        setSelected(false);
-      }
     };
     return (
       <div className={cn(styles.item)}>
@@ -47,24 +38,12 @@ const SneakersItem = React.memo(
             <span className={cn(styles.section__cost)}>{`${price} USD`}</span>
           </div>
           <div className={cn(styles.section__right_side)}>
-            {!selected && (
-              <a
-                title="add to cart"
-                rel="nofollow"
-                target="_self"
-                className={cn(styles.section__btn_select)}
-                onClick={() => handleAddItemToCart()}></a>
-            )}
-            {selected && (
-              <a
-                title="item added to cart"
-                rel="nofollow"
-                target="_self"
-                className={cn(styles.section__btn_unselect)}
-                onClick={() => handleRemoveCartItem(id)}>
-                <span className={cn(styles.checkmarked)}>&#10003;</span>
-              </a>
-            )}
+            <a
+              title="add to cart"
+              rel="nofollow"
+              target="_self"
+              className={cn(styles.section__btn_add)}
+              onClick={() => handleAddItemToCart()}></a>
           </div>
         </div>
       </div>
@@ -75,6 +54,5 @@ const SneakersItem = React.memo(
 export default compose(
   connect(null, {
     addSneakersToCart: cartActions.addSneakersToCart,
-    removeCartItem: cartActions.removeCartItem,
   }),
 )(SneakersItem);

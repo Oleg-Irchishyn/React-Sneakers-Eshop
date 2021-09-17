@@ -53,6 +53,16 @@
             justify-content: flex-start;
             margin-left: auto;
             cursor: pointer;
+
+            .header__cart_amount {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                position: absolute;
+                top: calc(0% - 14px);
+                left: calc(0% + 14px);
+                color: $btn-bg;
+            }
             img {
                 max-width: 18px;
                 height: 18px;
