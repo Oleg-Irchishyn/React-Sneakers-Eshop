@@ -8,96 +8,94 @@
       "imageUrl": "/images/1.png",
       "title": "Nike Blazer Mid Suede",
       "price": 500.59,
-      "favourite": false,
-      "selected": false
+      "favourite": false
+     
     },
     {
       "id": 1,
       "imageUrl": "/images/2.png",
       "title": "Nike Air Max 270",
       "price": 410.69,
-      "favourite": false,
-      "selected": true
+      "favourite": false
+     
     },
     {
       "id": 2,
       "imageUrl": "/images/3.png",
       "title": " Nike Blazer Mid Suede White",
       "price": 313.77,
-      "favourite": false,
-      "selected": true
+      "favourite": false
+     
     },
     {
       "id": 3,
       "imageUrl": "/images/4.png",
       "title": "Puma X Aka Boku Future Rider",
       "price": 600.99,
-      "favourite": false,
-      "selected": true
+      "favourite": false
     },
     {
       "id": 4,
       "imageUrl": "/images/5.png",
       "title": " Under Armour Curry 8",
       "price": 800.5,
-      "favourite": false,
-      "selected": false
+      "favourite": false
+     
     },
     {
       "id": 5,
       "imageUrl": "/images/6.png",
       "title": "Nike Kyrie 7",
       "price": 700,
-      "favourite": false,
-      "selected": false
+      "favourite": false
+     
     },
     {
       "id": 6,
       "imageUrl": "/images/7.png",
       "title": "Jordan Air Jordan 11",
       "price": 1000,
-      "favourite": false,
-      "selected": true
+      "favourite": false
+
     },
     {
       "id": 7,
       "imageUrl": "/images/8.png",
       "title": "Nike Lebron XVIII Low",
       "price": 500.19,
-      "favourite": false,
-      "selected": false
+      "favourite": false
     },
     {
       "id": 8,
       "imageUrl": "/images/9.png",
       "title": "Nike Blazer Mid Suede Green",
       "price": 676.2,
-      "favourite": false,
-      "selected": false
+      "favourite": false
+     
     },
     {
       "id": 9,
       "imageUrl": "/images/10.png",
       "title": "Puma X Aka Boku Future Rider",
       "price": 444.33,
-      "favourite": false,
-      "selected": false
+      "favourite": false
+     
     },
     {
       "id": 10,
       "imageUrl": "/images/11.png",
       "title": "Nike Kyrie Flytrap IV",
       "price": 2000,
-      "favourite": false,
-      "selected": false
+      "favourite": false
+     
     },
     {
       "id": 11,
       "imageUrl": "/images/12.png",
       "title": "Nike Lebron XVIII",
       "price": 789.56,
-      "favourite": false,
-      "selected": false
+      "favourite": false
+     
     }
   ],
   "сart": {

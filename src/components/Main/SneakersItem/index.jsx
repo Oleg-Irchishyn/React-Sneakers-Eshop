@@ -5,16 +5,12 @@ import favouriteIcon from '../../../assets/images/item-icons/favourite.png';
 import favouriteIconActive from '../../../assets/images/item-icons/favourite-pink.png';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { setNewSneakersItemSelectedStatus } from '../../../redux/reducers/appReducer';
 import { actions as cartActions } from '../../../redux/reducers/cartReducer';
 
 const SneakersItem = React.memo(
-  ({ setNewSneakersItemSelectedStatus, addSneakersToCart, ...restProps }) => {
-    const { id, imageUrl, title, price, favourite, selected } = restProps;
-
-    const changeSelectedStatus = (id, newVal) => {
-      setNewSneakersItemSelectedStatus(id, newVal);
-    };
+  ({ setNewSneakersItemSelectedStatus, addSneakersToCart, removeCartItem, ...restProps }) => {
+    const [selected, setSelected] = React.useState(false);
+    const { id, imageUrl, title, price, favourite } = restProps;
 
     const handleAddItemToCart = () => {
       const object = {
@@ -24,6 +20,14 @@ const SneakersItem = React.memo(
         price,
       };
       addSneakersToCart(object);
+      setSelected(true);
+    };
+
+    const handleRemoveCartItem = (id) => {
+      if (window.confirm('Do yo want to remove this sneaker?')) {
+        removeCartItem(id);
+        setSelected(false);
+      }
     };
     return (
       <div className={cn(styles.item)}>
@@ -49,7 +53,7 @@ const SneakersItem = React.memo(
                 rel="nofollow"
                 target="_self"
                 className={cn(styles.section__btn_select)}
-                onClick={() => changeSelectedStatus(id, true)}></a>
+                onClick={() => handleAddItemToCart()}></a>
             )}
             {selected && (
               <a
@@ -57,24 +61,12 @@ const SneakersItem = React.memo(
                 rel="nofollow"
                 target="_self"
                 className={cn(styles.section__btn_unselect)}
-                onClick={() => changeSelectedStatus(id, false)}>
+                onClick={() => handleRemoveCartItem(id)}>
                 <span className={cn(styles.checkmarked)}>&#10003;</span>
               </a>
             )}
           </div>
         </div>
-        {selected ? (
-          <div className={cn(styles.item__add_item_section)}>
-            <button
-              className={cn(styles.add_item_btn, styles.btn_add)}
-              onClick={() => handleAddItemToCart()}>
-              Add To Cart
-            </button>
-            {/* <p className={cn(styles.plus)}></p>
-          <span className={cn(styles.amount)}>0</span>
-          <p className={cn(styles.minus)}></p> */}
-          </div>
-        ) : null}
       </div>
     );
   },
@@ -82,7 +74,7 @@ const SneakersItem = React.memo(
 
 export default compose(
   connect(null, {
-    setNewSneakersItemSelectedStatus,
     addSneakersToCart: cartActions.addSneakersToCart,
+    removeCartItem: cartActions.removeCartItem,
   }),
 )(SneakersItem);

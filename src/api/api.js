@@ -6,7 +6,7 @@ const instance = axios.create({
 });
 
 export const sneakersAPI = {
-  getSneakers: (portionStart = 0, portionLimit = 4) => {
+  getSneakers: (portionStart, portionLimit) => {
     return instance.get(`sneakers?_start=${portionStart}&_limit=${portionLimit}`,)
       .then(response => {
         return response.data;
@@ -17,11 +17,6 @@ export const sneakersAPI = {
       .then(response => {
         return response.data;
       });
-  },
-  changeSneakersSelectedStatus: (id, newVal) => {
-    return instance
-      .patch(`sneakers/` + id, { selected: newVal })
-      .then((response) => response.data);
   },
   changeSneakersFavouriteStatus: (id, newVal) => {
     return instance

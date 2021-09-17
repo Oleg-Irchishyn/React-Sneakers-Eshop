@@ -7,18 +7,18 @@ import {
   getSneakersItemsList,
   getTotalSneakersCount,
 } from '../../redux/selectors/appSelectors';
-import { loadMoreSneakers } from '../../redux/reducers/appReducer';
+import { getSneakersList } from '../../redux/reducers/appReducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Preloader, SekeletonPrelaoder } from '../common/';
 
-const Main = React.memo(({ sneakers, loadMoreSneakers, totalSneakersCount, isLoading }) => {
+const Main = React.memo(({ sneakers, getSneakersList, totalSneakersCount, isLoading }) => {
   let [startPortion, setStartPortion] = React.useState(null);
   let [endPortion, setEndPortion] = React.useState(4);
   const loadMoreItems = (e) => {
     setEndPortion((endPortion = endPortion + 4));
     setStartPortion(0);
-    loadMoreSneakers(startPortion, endPortion);
+    getSneakersList(startPortion, endPortion);
   };
 
   React.useEffect(() => {
@@ -69,4 +69,4 @@ const mapStateToProps = (state) => ({
   isLoading: getIsLoading(state),
 });
 
-export default compose(connect(mapStateToProps, { loadMoreSneakers }))(Main);
+export default compose(connect(mapStateToProps, { getSneakersList }))(Main);
