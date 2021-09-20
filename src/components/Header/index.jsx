@@ -13,6 +13,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 const Header = React.memo(({ totalCount, totalPrice }) => {
+  const fixedTotalPrice = Number(totalPrice.toFixed(2));
   React.useEffect(() => {
     localStorage.setItem('sneakersCartItemsTotalPrice', JSON.stringify(totalPrice));
     localStorage.setItem('sneakersCartItemsTotalCount', JSON.stringify(totalCount));
@@ -34,7 +35,7 @@ const Header = React.memo(({ totalCount, totalPrice }) => {
             <i className={cn(styles.header__cart_amount)}>{totalCount}</i>
           ) : null}
           <img src={cartIcon} alt="cart icon" />
-          <span className={cn(styles.cart__money_sum)}>{`${totalPrice} USD`}</span>
+          <span className={cn(styles.cart__money_sum)}>{`${fixedTotalPrice} USD`}</span>
         </div>
         <div className={cn(styles.header__favourites)}>
           <img src={favorIcon} alt="favourites icon" />

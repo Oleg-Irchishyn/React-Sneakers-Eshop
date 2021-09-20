@@ -1,16 +1,23 @@
 @import "../variables.scss";
 
 .headerWrapper {
-    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 100%;
-    padding: 0 0 40px 0;
+    padding: 40px 0 40px 0;
     border-bottom: 1px solid #eaeaea;
+    background: #fff;
+    z-index: 100;
     .header {
         position: relative;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: center;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 90%;
         &__logo {
             display: flex;
             flex-wrap: wrap;

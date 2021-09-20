@@ -4,12 +4,14 @@ const INITIALIZED_SUCCESS = 'sneakers/app/INITIALIZED_SUCCESS';
 const SET_SNEAKERS_LIST = 'sneakers/app/SET_SNEAKERS_LIST';
 const SET_TOTAL_SNEAKERS_COUNT = 'sneakers/app/SET_TOTAL_SNEAKERS_COUNT';
 const SET_IS_LOADED = 'sneakers/app/SET_IS_LOADED';
+const SET_SEARCH_QUERY = 'sneakers/app/FILTER_SNEAKERS_LIST';
 
 let initialState = {
   initialized: false,
   sneakers: JSON.parse(localStorage.getItem('sneakersListItems')) || [],
   totalSneakersCount: null,
   isLoading: false,
+  searchQuery: '',
 }
 
 const appReducer = (state = initialState, action) => {
@@ -39,6 +41,12 @@ const appReducer = (state = initialState, action) => {
         totalSneakersCount: action.payload,
       };
     };
+    case SET_SEARCH_QUERY: {
+      return {
+        ...state,
+        searchQuery: action.payload
+      };
+    };
     default:
       return state;
   }
@@ -52,6 +60,8 @@ export const actions = {
     ({ type: SET_TOTAL_SNEAKERS_COUNT, payload: totalSneakersCount }),
   setIsLoaded: (isLoading) =>
     ({ type: SET_IS_LOADED, payload: isLoading }),
+  setSearchQuery: (value) =>
+    ({ type: SET_SEARCH_QUERY, payload: value }),
 }
 
 export const getSneakersList = (portionStart = 0, portionLimit = 4) => async (dispatch) => {

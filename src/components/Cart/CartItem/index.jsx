@@ -39,7 +39,7 @@ const CartItem = React.memo(
         </div>
         <div className={cn(styles.item__right_side)}>
           <p className={cn(styles.item__title)}>{title}</p>
-          <p className={cn(styles.item__price)}>{`${totalPrice} USD`}</p>
+          <p className={cn(styles.item__price)}>{`${Number(totalPrice).toFixed(2)} USD`}</p>
           <div className={cn(styles.item__delete)} onClick={() => handleRemoveCartItem(id)}></div>
         </div>
         <div className={cn(styles.item__add_section)}>

@@ -37,13 +37,13 @@ const App = React.memo(({ initializeApp, initialized }) => {
     <div className={styles.App}>
       <Container className={cn(styles.app_container)}>
         {/* <SliderExample /> */}
-        <Header />
         <Switch>
           <Route path="/" render={() => <Main />} />
           <Route path="*" render={() => <div>404 NOT FOUND</div>} />
           {/*<Route path="/profile/:userId?" render={() => <SuspendedProfile />} />*/}
         </Switch>
       </Container>
+      <Header />
     </div>
   );
 });

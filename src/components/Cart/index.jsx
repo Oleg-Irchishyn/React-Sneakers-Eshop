@@ -3,10 +3,14 @@ import styles from '../../styles/components/Cart.module.scss';
 import cn from 'classnames';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getCartItems } from '../../redux/selectors/cartSelectors';
+import {
+  getCartItems,
+  getCartItemsTotalCount,
+  getCartItemsTotalPrice,
+} from '../../redux/selectors/cartSelectors';
 import { CartItem } from '../index';
 
-const Cart = React.memo(({ toggleVisibleCart, items }) => {
+const Cart = React.memo(({ toggleVisibleCart, items, totalCount, totalPrice }) => {
   const addedCartItems = Object.keys(items).map((item) => {
     return items[item].items[0];
   });
@@ -22,6 +26,8 @@ const Cart = React.memo(({ toggleVisibleCart, items }) => {
 
   React.useEffect(() => {
     localStorage.setItem('sneakersCartItems', JSON.stringify(items));
+    localStorage.setItem('sneakersCartItemsTotalPrice', JSON.stringify(totalPrice));
+    localStorage.setItem('sneakersCartItemsTotalCount', JSON.stringify(totalCount));
   });
 
   React.useEffect(() => {
@@ -47,6 +53,18 @@ const Cart = React.memo(({ toggleVisibleCart, items }) => {
             ))}
           </div>
         </div>
+        <div className={cn(styles.cart__content_bottom)}>
+          <div className={cn(styles.content_bottom__amount)}>
+            <p>Total Amount</p>
+            <p className={cn(styles.line)}></p>
+            <p>{totalCount}</p>
+          </div>
+          <div className={cn(styles.content_bottom__price)}>
+            <p>Total Price</p>
+            <p className={cn(styles.line)}></p>
+            <p>{`${totalPrice} USD`}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -54,6 +72,8 @@ const Cart = React.memo(({ toggleVisibleCart, items }) => {
 
 const mapStateToProps = (state) => ({
   items: getCartItems(state),
+  totalPrice: getCartItemsTotalPrice(state),
+  totalCount: getCartItemsTotalCount(state),
 });
 
 export default compose(connect(mapStateToProps, {}))(Cart);

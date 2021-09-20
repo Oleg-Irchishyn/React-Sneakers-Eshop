@@ -16,3 +16,7 @@ export const getIsLoading = (state) => {
   return state.app.isLoading;
 }
 
+export const getSearchQuery = (state) => {
+  return state.app.searchQuery;
+}
+

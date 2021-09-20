@@ -11,20 +11,20 @@
   height: 100%;
   width: 100%;
   max-width: 100%;
-  padding: 90px;
+  padding: 0;
   .app_container {
     background: #ffffff;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
     border-radius: 20px;
-    padding: 40px;
+    padding: 122px 40px 40px 40px;
   }
   @include xs-devices {
-    padding: 15px;
+    padding: 122px 15px 15px 15px;
   }
   @include sm-devices {
-    padding: 15px;
+    padding: 122px 15px 15px 15px;
   }
   @include md-devices {
-    padding: 30px;
+    padding: 122px 30px 30px 30px;
   }
 }
