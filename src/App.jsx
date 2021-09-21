@@ -8,13 +8,11 @@ import { getInitialization } from './redux/selectors/appSelectors';
 import { Preloader, SliderExample } from './components/common';
 import { Header, Main } from './components';
 import { initializeApp } from './redux/reducers/appReducer';
-import { Container } from 'semantic-ui-react';
 import cn from 'classnames';
+import { withSuspense } from './hoc/WithSuspense';
 
-/* React Lazy example
-const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const SuspendedProfile = withSuspense(ProfileContainer);
-*/
+const Order = React.lazy(() => import('./components/Order/'));
+const SuspendedOrder = withSuspense(Order);
 
 const App = React.memo(({ initializeApp, initialized }) => {
   React.useEffect(() => {
@@ -35,15 +33,15 @@ const App = React.memo(({ initializeApp, initialized }) => {
 
   return (
     <div className={styles.App}>
-      <Container className={cn(styles.app_container)}>
+      <div className={cn(styles.app_container)}>
         {/* <SliderExample /> */}
+        <Header />
         <Switch>
-          <Route path="/" render={() => <Main />} />
+          <Route exact path="/" render={() => <Main />} />
+          <Route path="/order" render={() => <SuspendedOrder />} />
           <Route path="*" render={() => <div>404 NOT FOUND</div>} />
-          {/*<Route path="/profile/:userId?" render={() => <SuspendedProfile />} />*/}
         </Switch>
-      </Container>
-      <Header />
+      </div>
     </div>
   );
 });

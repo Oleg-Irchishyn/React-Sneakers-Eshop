@@ -103,6 +103,15 @@
                 max-width: 23%;
                 width: 100%;
                 margin: 0 auto 40px 0;
+                cursor: pointer;
+                transform: none;
+                transition: transform 0.2s ease;
+                @media (min-width: 992px) {
+                    &:hover {
+                        transform: perspective(2000px) translateY(-10px) translateZ(200px) rotate3d(0, 1, 0, 25deg);
+                        transition: transform 0.2s ease;
+                    }
+                }
                 &:nth-of-type(4n) {
                     margin-right: 0;
                 }
@@ -224,6 +233,7 @@
                             position: relative;
                             background: #ffffff;
                             border: 1px solid #f2f2f2;
+                            box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
                             box-sizing: border-box;
                             border-radius: 8px;
                             width: 32px;
@@ -238,7 +248,13 @@
                             }
                             &:hover {
                                 transition: 0.2s ease;
-                                box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+                                background: $active-btn-bg;
+                                border: none;
+                                box-shadow: none;
+                                &::before,
+                                &::after {
+                                    background: #fff;
+                                }
                             }
                             &::before {
                                 display: block;
@@ -273,8 +289,6 @@
                     justify-content: center;
                     width: 100%;
                     padding: 14px 0 0 0;
-                    .add_item_btn {
-                    }
                 }
             }
         }

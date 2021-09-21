@@ -3,3 +3,5 @@ export { default as Cart } from "./Cart";
 export { default as Main } from "./Main";
 export { default as SneakersItem } from "./Main/SneakersItem";
 export { default as CartItem } from "./Cart/CartItem";
+export { default as Order } from "./Order";
+export { default as OrderItem } from "./Order/OrderItem";

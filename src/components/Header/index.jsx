@@ -11,6 +11,7 @@ import {
 } from '../../redux/selectors/cartSelectors';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 const Header = React.memo(({ totalCount, totalPrice }) => {
   const fixedTotalPrice = Number(totalPrice.toFixed(2));
@@ -26,9 +27,11 @@ const Header = React.memo(({ totalCount, totalPrice }) => {
     <div className={cn(styles.headerWrapper)}>
       <header className={cn(styles.header)}>
         <div className={cn(styles.header__logo)}>
-          <img src={logo} alt="logo" />
-          <p className={cn(styles.header__logo_title)}>React Sneakers</p>
-          <p className={cn(styles.header__logo_descr)}>The Best Sneakers Shop</p>
+          <NavLink to="/">
+            <img src={logo} alt="logo" />
+            <p className={cn(styles.header__logo_title)}>React Sneakers</p>
+            <p className={cn(styles.header__logo_descr)}>The Best Sneakers Shop</p>
+          </NavLink>
         </div>
         <div className={cn(styles.header__cart)} onClick={handleCartVisibility}>
           {totalCount && totalCount > 0 ? (

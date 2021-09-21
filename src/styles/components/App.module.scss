@@ -15,16 +15,25 @@
   .app_container {
     background: #ffffff;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
-    border-radius: 20px;
-    padding: 122px 40px 40px 40px;
-  }
-  @include xs-devices {
-    padding: 122px 15px 15px 15px;
-  }
-  @include sm-devices {
-    padding: 122px 15px 15px 15px;
-  }
-  @include md-devices {
-    padding: 122px 30px 30px 30px;
+    border-radius: 0 0 20px 20px;
+    padding: 40px;
+    margin: 212px auto 90px auto;
+    width: 1140px;
+    @include lg-devices {
+      width: 960px;
+      padding: 30px;
+    }
+    @include md-devices {
+      width: 750px;
+      padding: 30px;
+    }
+    @include sm-devices {
+      padding: 15px;
+      width: 90%;
+    }
+    @include xs-devices {
+      padding: 15px;
+      width: 90%;
+    }
   }
 }

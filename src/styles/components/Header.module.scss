@@ -2,22 +2,44 @@
 
 .headerWrapper {
     position: fixed;
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: calc(0% + 90px);
+    transform: translate(-50%, 0);
     width: 100%;
-    padding: 40px 0 40px 0;
+    padding: 40px;
     border-bottom: 1px solid #eaeaea;
     background: #fff;
     z-index: 100;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+    @include xl-devices {
+        max-width: 1140px;
+    }
+    @include lg-devices {
+        max-width: 960px;
+        padding: 40px 30px 40px 30px;
+    }
+    @include md-devices {
+        max-width: 750px;
+        padding: 40px 30px 40px 30px;
+    }
+    @include sm-devices {
+        max-width: 90%;
+        padding: 40px 15px 40px 15px;
+    }
+    @include xs-devices {
+        max-width: 90%;
+        padding: 40px 15px 40px 15px;
+    }
+
     .header {
         position: relative;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: center;
-        margin: 0 auto;
         width: 100%;
-        max-width: 90%;
+        max-width: 100%;
         &__logo {
             display: flex;
             flex-wrap: wrap;
