@@ -2,11 +2,11 @@ import React from 'react';
 import styles from '../../../styles/components/OrderItem.module.scss';
 import cn from 'classnames';
 
-const OrderItem = React.memo((title, imageUrl, totalPrice, totalCount) => {
+const OrderItem = React.memo(({ title, imageUrl, totalPrice, totalCount }) => {
   return (
     <div className={cn(styles.item)}>
+      <span className={cn(styles.item__count)}>{totalCount}</span>
       <div className={cn(styles.item__top_section)}>
-        <span className={cn(styles.item__count)}>{totalCount}</span>
         <div className={cn(styles.item__img)}>
           <img src={imageUrl} alt={title} />
         </div>

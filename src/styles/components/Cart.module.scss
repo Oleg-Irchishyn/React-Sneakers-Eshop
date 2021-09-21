@@ -169,30 +169,27 @@
             text-align: center;
             word-break: break-word;
         }
-
-        a {
-            &.btn_add {
-                max-width: 80% !important;
-                &::after {
-                    content: "";
-                    display: none;
-                }
-                &::before {
-                    content: "\21D0";
-                    font-size: 16px;
-                    line-height: 1;
-                    color: #fff;
-                    transform: translate(-100%, 0);
-                    top: 50%;
-                    left: 0;
-                    transition: 0.2s ease;
-                }
-                &:hover {
-                    @media (min-width: 992px) {
-                        &::before {
-                            transition: 0.2s ease;
-                            transform: translate(-130%, 0);
-                        }
+        .btn_add {
+            max-width: 80% !important;
+            &::after {
+                content: "";
+                display: none;
+            }
+            &::before {
+                content: "\21D0";
+                font-size: 16px;
+                line-height: 1;
+                color: #fff;
+                transform: translate(-100%, 0);
+                top: 50%;
+                left: 0;
+                transition: 0.2s ease;
+            }
+            &:hover {
+                @media (min-width: 992px) {
+                    &::before {
+                        transition: 0.2s ease;
+                        transform: translate(-130%, 0);
                     }
                 }
             }
@@ -200,55 +197,55 @@
     }
     a {
         width: 100%;
-        &.btn_add {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            margin: 25px auto 0 auto;
-            background: $btn-bg;
-            border: none;
-            border-radius: 18px;
-            font-family: $font-secondary;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 19px;
-            text-align: center;
-            color: #ffffff;
-            cursor: pointer;
-            outline: none;
-            transition: 0.2s ease;
-            max-width: 100%;
-            width: 100%;
-            min-height: 47px;
-            word-break: break-word;
-            &:hover {
-                @media (min-width: 992px) {
-                    &::after {
-                        transition: 0.2s ease;
-                        transform: translate(130%, 0);
-                    }
+    }
+    .btn_add {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin: 25px auto 0 auto;
+        background: $btn-bg;
+        border: none;
+        border-radius: 18px;
+        font-family: $font-secondary;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        color: #ffffff;
+        cursor: pointer;
+        outline: none;
+        transition: 0.2s ease;
+        max-width: 100%;
+        width: 100%;
+        min-height: 47px;
+        word-break: break-word;
+        &:hover {
+            @media (min-width: 992px) {
+                &::after {
+                    transition: 0.2s ease;
+                    transform: translate(130%, 0);
                 }
             }
-            &::after {
-                content: "\21D2";
-                font-size: 16px;
-                line-height: 1;
-                color: #fff;
-                transform: translate(100%, 0);
-                top: 50%;
-                left: 100%;
-                transition: 0.2s ease;
-            }
-            &:hover,
-            &:focus {
-                transition: 0.2s ease;
-                background: $active-btn-bg;
-            }
-            &.disabled {
-                animation: disableBtn 0.4s ease-in-out forwards;
-            }
+        }
+        &::after {
+            content: "\21D2";
+            font-size: 16px;
+            line-height: 1;
+            color: #fff;
+            transform: translate(100%, 0);
+            top: 50%;
+            left: 100%;
+            transition: 0.2s ease;
+        }
+        &:hover,
+        &:focus {
+            transition: 0.2s ease;
+            background: $active-btn-bg;
+        }
+        &.disabled {
+            animation: disableBtn 0.4s ease-in-out forwards;
         }
     }
 }

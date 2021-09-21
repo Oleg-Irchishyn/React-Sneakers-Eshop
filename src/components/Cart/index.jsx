@@ -9,7 +9,7 @@ import {
   getCartItemsTotalPrice,
 } from '../../redux/selectors/cartSelectors';
 import { CartItem } from '../index';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import emptyCart from '../../assets/images/cart-empty.png';
 
 const Cart = React.memo(({ toggleVisibleCart, items, totalCount, totalPrice }) => {
@@ -26,8 +26,7 @@ const Cart = React.memo(({ toggleVisibleCart, items, totalCount, totalPrice }) =
     }
   }, []);
 
-  const closeEmptyCart = (e) => {
-    e.preventDefault();
+  const closeEmptyCart = () => {
     toggleVisibleCart(false);
   };
 
@@ -64,39 +63,39 @@ const Cart = React.memo(({ toggleVisibleCart, items, totalCount, totalPrice }) =
           </div>
         ) : null}
         {totalCount && totalCount > 0 ? (
-          <div className={cn(styles.cart__content_bottom)}>
-            <div className={cn(styles.content_bottom__amount)}>
-              <p>Total Amount</p>
-              <p className={cn(styles.line)}></p>
-              <p>{totalCount}</p>
+          <Route exact path="/">
+            <div className={cn(styles.cart__content_bottom)}>
+              <div className={cn(styles.content_bottom__amount)}>
+                <p>Total Amount</p>
+                <p className={cn(styles.line)}></p>
+                <p>{totalCount}</p>
+              </div>
+              <div className={cn(styles.content_bottom__price)}>
+                <p>Total Price</p>
+                <p className={cn(styles.line)}></p>
+                <p>{`${Number(totalPrice).toFixed(2)} USD`}</p>
+              </div>
+
+              <NavLink to="/order">
+                <div className={cn(styles.btn_add)}>Make an order</div>
+              </NavLink>
             </div>
-            <div className={cn(styles.content_bottom__price)}>
-              <p>Total Price</p>
-              <p className={cn(styles.line)}></p>
-              <p>{`${Number(totalPrice).toFixed(2)} USD`}</p>
-            </div>
-            <NavLink to="/order">
-              <a title="Make an order" rel="nofollow" target="_self" className={cn(styles.btn_add)}>
-                Make an order
-              </a>
-            </NavLink>
-          </div>
+          </Route>
         ) : null}
         {!totalCount ? (
           <div className={cn(styles.cart__content_empty)}>
             <img src={emptyCart} alt="empty cart icon" />
             <p>Cart is empty</p>
             <p>Please add at least one pair of sneakers to make an order</p>
-            <a
-              title="Back to purchases"
-              rel="nofollow"
-              target="_self"
-              className={cn(styles.btn_add)}
-              onClick={(e) => {
-                closeEmptyCart(e);
-              }}>
-              Back to purchases
-            </a>
+            <NavLink to="/">
+              <div
+                className={cn(styles.btn_add)}
+                onClick={() => {
+                  closeEmptyCart();
+                }}>
+                Back to purchases
+              </div>
+            </NavLink>
           </div>
         ) : null}
       </div>

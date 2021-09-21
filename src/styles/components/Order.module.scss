@@ -57,5 +57,92 @@
         justify-content: flex-start;
         align-items: stretch;
         width: 100%;
+        padding: 40px 0 0 0;
+    }
+    &_content_empty {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0 0 0;
+        img {
+            display: block;
+            margin: 0;
+            max-width: 100%;
+            height: auto;
+        }
+        p {
+            margin: 0 auto;
+            font-family: $font-secondary;
+            font-size: 16px;
+            line-height: 24px;
+            color: $color-grey;
+            text-align: center;
+            word-break: break-word;
+        }
+        p:not(:last-of-type) {
+            margin: 10px auto 10px auto;
+            font-family: $font-main;
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 27px;
+            color: $color-black;
+            text-align: center;
+            word-break: break-word;
+        }
+        a {
+            width: 100%;
+        }
+        .btn_add {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            margin: 25px auto 0 auto;
+            background: $btn-bg;
+            border: none;
+            border-radius: 18px;
+            font-family: $font-secondary;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+            color: #ffffff;
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s ease;
+            max-width: 245px;
+            width: 100%;
+            min-height: 47px;
+            word-break: break-word;
+            &:hover {
+                @media (min-width: 992px) {
+                    &::before {
+                        transition: 0.2s ease;
+                        transform: translate(-130%, 0);
+                    }
+                }
+            }
+            &::before {
+                content: "\21D0";
+                font-size: 16px;
+                line-height: 1;
+                color: #fff;
+                transform: translate(-100%, 0);
+                top: 50%;
+                left: 0;
+                transition: 0.2s ease;
+            }
+            &:hover,
+            &:focus {
+                transition: 0.2s ease;
+                background: $active-btn-bg;
+            }
+            &.disabled {
+                animation: disableBtn 0.4s ease-in-out forwards;
+            }
+        }
     }
 }
