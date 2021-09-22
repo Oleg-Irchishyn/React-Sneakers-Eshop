@@ -19,21 +19,15 @@ export const sneakersAPI = {
       });
   },
   getFavouriteItems: () => {
-    return instance.get(`favourites`,)
+    return instance.get(`favourites`)
       .then(response => {
         return response.data;
       });
   },
-  setFavouriteItems: (id,
-    imageUrl,
-    title,
-    price) => {
+  setFavouriteItems: (favItem) => {
     return instance
-      .post(`favourites`, {
-        id,
-        imageUrl,
-        title,
-        price
+      .post(`favourites/`, {
+        favItem
       })
       .then((response) => response.data);
   },

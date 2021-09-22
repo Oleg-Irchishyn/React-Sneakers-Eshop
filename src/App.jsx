@@ -12,7 +12,9 @@ import cn from 'classnames';
 import { withSuspense } from './hoc/WithSuspense';
 
 const Order = React.lazy(() => import('./components/Order/'));
+const Favourites = React.lazy(() => import('./components/Favourites'));
 const SuspendedOrder = withSuspense(Order);
+const SuspendedFavourites = withSuspense(Favourites);
 
 const App = React.memo(({ initializeApp, initialized }) => {
   React.useEffect(() => {
@@ -39,6 +41,7 @@ const App = React.memo(({ initializeApp, initialized }) => {
         <Switch>
           <Route exact path="/" render={() => <Main />} />
           <Route path="/order" render={() => <SuspendedOrder />} />
+          <Route path="/favourites" render={() => <SuspendedFavourites />} />
           <Route path="*" render={() => <div>404 NOT FOUND</div>} />
         </Switch>
       </div>

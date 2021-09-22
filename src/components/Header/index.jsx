@@ -41,7 +41,9 @@ const Header = React.memo(({ totalCount, totalPrice }) => {
           <span className={cn(styles.cart__money_sum)}>{`${fixedTotalPrice} USD`}</span>
         </div>
         <div className={cn(styles.header__favourites)}>
-          <img src={favorIcon} alt="favourites icon" />
+          <NavLink to="/favourites">
+            <img src={favorIcon} alt="favourites icon" />
+          </NavLink>
         </div>
       </header>
       {visibleCart ? <Cart toggleVisibleCart={toggleVisibleCart} /> : null}

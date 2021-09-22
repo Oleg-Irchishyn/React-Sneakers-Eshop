@@ -58,10 +58,11 @@ const appReducer = (state = initialState, action) => {
       };
     };
     case ADD_ITEM_TO_FAVOURITES: {
+      const NewFavouritesLIst = [...state.favourites, action.payload];
       return {
         ...state,
         isLoading: true,
-        favourites: action.payload,
+        favourites: NewFavouritesLIst,
       };
     };
     default:
@@ -79,8 +80,10 @@ export const actions = {
     ({ type: SET_IS_LOADED, payload: isLoading }),
   setSearchQuery: (value) =>
     ({ type: SET_SEARCH_QUERY, payload: value }),
-  setFavouritesList: (favourites) =>
-    ({ type: SET_FAVOURITES_LIST, payload: favourites }),
+  setFavouritesItemsToList: (obj) =>
+    ({ type: SET_FAVOURITES_LIST, payload: obj }),
+  addNewFavouriteItem: (obj) =>
+    ({ type: ADD_ITEM_TO_FAVOURITES, payload: obj }),
 }
 
 export const getSneakersList = (portionStart = 0, portionLimit = 4) => async (dispatch) => {
@@ -97,23 +100,17 @@ export const getTotalSneakersItemsCount = () => async (dispatch) => {
 
 export const getFavouritesList = () => async (dispatch) => {
   let data = await sneakersAPI.getFavouriteItems();
-  dispatch(actions.setFavouritesList(data));
+  dispatch(actions.setFavouritesItemsToList(data));
   dispatch(actions.setIsLoaded(false));
 };
 
 
-export const setFavouritesList = (id,
-  imageUrl,
-  title,
-  price) => async (dispatch) => {
-    let data = await sneakersAPI.setFavouriteItems((id,
-      imageUrl,
-      title,
-      price
-    ));
-    dispatch(actions.setFavouritesList(data));
-    dispatch(actions.setIsLoaded(false));
-  };
+export const setFavouritesList = (obj) => async (dispatch) => {
+  let data = await sneakersAPI.setFavouriteItems(obj
+  );
+  dispatch(actions.addNewFavouriteItem(data));
+  dispatch(actions.setIsLoaded(false));
+};
 
 export const initializeApp = () => (dispatch) => {
   let promises = [
