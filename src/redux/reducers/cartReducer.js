@@ -144,4 +144,13 @@ export const actions = {
 
 }
 
+export const setOrderSuccess = (items, totalPrice, totalCount) => async () => {
+    await sneakersAPI.setOrderItems((items
+    ));
+    await sneakersAPI.setOrderTotalPrice((totalPrice
+    ));
+    await sneakersAPI.setOrderTotalCount((totalCount
+    ));
+};
+
 export default cartReducer;

@@ -10,6 +10,57 @@ $btn-bg: #9dd558;
 $active-btn-bg: linear-gradient(180deg, #89f09c 0%, #3cc755 100%);
 
 /*Media quieries mixins*/
+
+@mixin btn-add {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 25px auto 0 auto;
+  background: $btn-bg;
+  border: none;
+  border-radius: 18px;
+  font-family: $font-secondary;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s ease;
+  max-width: 245px;
+  width: 100%;
+  min-height: 47px;
+  word-break: break-word;
+  &:hover {
+    @media (min-width: 992px) {
+      &::before {
+        transition: 0.2s ease;
+        transform: translate(-130%, 0);
+      }
+    }
+  }
+  &::before {
+    content: "\21D0";
+    font-size: 16px;
+    line-height: 1;
+    color: #fff;
+    transform: translate(-100%, 0);
+    top: 50%;
+    left: 0;
+    transition: 0.2s ease;
+  }
+  &:hover,
+  &:focus {
+    transition: 0.2s ease;
+    background: $active-btn-bg;
+  }
+  &.disabled {
+    animation: disableBtn 0.4s ease-in-out forwards;
+  }
+}
 @mixin xs-devices {
   @media (max-width: 575px) {
     @content;

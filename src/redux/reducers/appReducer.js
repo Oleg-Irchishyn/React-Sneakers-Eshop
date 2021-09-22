@@ -5,6 +5,8 @@ const SET_SNEAKERS_LIST = 'sneakers/app/SET_SNEAKERS_LIST';
 const SET_TOTAL_SNEAKERS_COUNT = 'sneakers/app/SET_TOTAL_SNEAKERS_COUNT';
 const SET_IS_LOADED = 'sneakers/app/SET_IS_LOADED';
 const SET_SEARCH_QUERY = 'sneakers/app/FILTER_SNEAKERS_LIST';
+const SET_FAVOURITES_LIST = 'sneakers/app/SET_FAVOURITES_LIST';
+const ADD_ITEM_TO_FAVOURITES = 'sneakers/app/ADD_ITEM_TO_FAVOURITES';
 
 let initialState = {
   initialized: false,
@@ -12,6 +14,7 @@ let initialState = {
   totalSneakersCount: null,
   isLoading: false,
   searchQuery: '',
+  favourites: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -47,6 +50,20 @@ const appReducer = (state = initialState, action) => {
         searchQuery: action.payload
       };
     };
+    case SET_FAVOURITES_LIST: {
+      return {
+        ...state,
+        isLoading: true,
+        favourites: action.payload,
+      };
+    };
+    case ADD_ITEM_TO_FAVOURITES: {
+      return {
+        ...state,
+        isLoading: true,
+        favourites: action.payload,
+      };
+    };
     default:
       return state;
   }
@@ -62,6 +79,8 @@ export const actions = {
     ({ type: SET_IS_LOADED, payload: isLoading }),
   setSearchQuery: (value) =>
     ({ type: SET_SEARCH_QUERY, payload: value }),
+  setFavouritesList: (favourites) =>
+    ({ type: SET_FAVOURITES_LIST, payload: favourites }),
 }
 
 export const getSneakersList = (portionStart = 0, portionLimit = 4) => async (dispatch) => {
@@ -75,6 +94,26 @@ export const getTotalSneakersItemsCount = () => async (dispatch) => {
   dispatch(actions.setTotalSneakersCount(data.count));
   dispatch(actions.setIsLoaded(false));
 };
+
+export const getFavouritesList = () => async (dispatch) => {
+  let data = await sneakersAPI.getFavouriteItems();
+  dispatch(actions.setFavouritesList(data));
+  dispatch(actions.setIsLoaded(false));
+};
+
+
+export const setFavouritesList = (id,
+  imageUrl,
+  title,
+  price) => async (dispatch) => {
+    let data = await sneakersAPI.setFavouriteItems((id,
+      imageUrl,
+      title,
+      price
+    ));
+    dispatch(actions.setFavouritesList(data));
+    dispatch(actions.setIsLoaded(false));
+  };
 
 export const initializeApp = () => (dispatch) => {
   let promises = [

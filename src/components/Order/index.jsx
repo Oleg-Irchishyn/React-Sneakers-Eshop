@@ -2,13 +2,21 @@ import React from 'react';
 import styles from '../../styles/components/Order.module.scss';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
-import { getCartItems, getCartItemsTotalCount } from '../../redux/selectors/cartSelectors';
+import {
+  getCartItems,
+  getCartItemsTotalCount,
+  getCartItemsTotalPrice,
+} from '../../redux/selectors/cartSelectors';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { OrderItem } from '..';
+import { setOrderSuccess } from '../../redux/reducers/cartReducer';
 import emptyCartSmile from '../../assets/images/cart-empty-smile.svg';
 
-const Order = React.memo(({ items, totalCount }) => {
+const Order = React.memo(({ items, totalPrice, totalCount, setOrderSuccess }) => {
+  const handleOrder = () => {
+    setOrderSuccess(items, totalPrice, totalCount);
+  };
   const addedOrderItems = Object.keys(items).map((item) => {
     return items[item].items[0];
   });
@@ -44,6 +52,13 @@ const Order = React.memo(({ items, totalCount }) => {
           </NavLink>
         </div>
       ) : null}
+      {totalCount && totalCount > 0 ? (
+        <div
+          className={cn(styles.order__section_submit_btn, styles.btn_add)}
+          onClick={() => handleOrder()}>
+          Purchase
+        </div>
+      ) : null}
     </div>
   );
 });
@@ -51,6 +66,11 @@ const Order = React.memo(({ items, totalCount }) => {
 const mapStateToProps = (state) => ({
   items: getCartItems(state),
   totalCount: getCartItemsTotalCount(state),
+  totalPrice: getCartItemsTotalPrice(state),
 });
 
-export default compose(connect(mapStateToProps, {}))(Order);
+export default compose(
+  connect(mapStateToProps, {
+    setOrderSuccess,
+  }),
+)(Order);

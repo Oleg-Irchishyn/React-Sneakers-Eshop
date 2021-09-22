@@ -5,3 +5,5 @@ export { default as SneakersItem } from "./Main/SneakersItem";
 export { default as CartItem } from "./Cart/CartItem";
 export { default as Order } from "./Order";
 export { default as OrderItem } from "./Order/OrderItem";
+export { default as Favourites } from "./Favourites";
+export { default as FavouritesItem } from "./Favourites/FavouritesItem";

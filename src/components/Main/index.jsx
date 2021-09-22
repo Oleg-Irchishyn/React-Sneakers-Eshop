@@ -91,5 +91,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-  connect(mapStateToProps, { getSneakersList, setSearchQuery: actions.setSearchQuery }),
+  connect(mapStateToProps, {
+    getSneakersList,
+    setSearchQuery: actions.setSearchQuery,
+  }),
 )(Main);

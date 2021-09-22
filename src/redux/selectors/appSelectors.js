@@ -16,6 +16,10 @@ export const getIsLoading = (state) => {
   return state.app.isLoading;
 }
 
+export const getFavouritesItemList = (state) => {
+  return state.app.favourites;
+}
+
 export const getSearchQuery = (state) => {
   return state.app.searchQuery;
 }

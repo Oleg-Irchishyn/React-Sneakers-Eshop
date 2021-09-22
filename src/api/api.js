@@ -18,21 +18,56 @@ export const sneakersAPI = {
         return response.data;
       });
   },
-  changeSneakersFavouriteStatus: (id, newVal) => {
-    return instance
-      .patch(`sneakers/` + id, { favourite: newVal })
-      .then((response) => response.data);
+  getFavouriteItems: () => {
+    return instance.get(`favourites`,)
+      .then(response => {
+        return response.data;
+      });
   },
-  addItemToCart: (
-    id,
+  setFavouriteItems: (id,
     imageUrl,
     title,
-    price,
+    price) => {
+    return instance
+      .post(`favourites`, {
+        id,
+        imageUrl,
+        title,
+        price
+      })
+      .then((response) => response.data);
+  },
+  setOrderItems: (
+    items
   ) => {
     return instance
-      .post(`cart`, { id, imageUrl, title, price })
+      .post(`totalOrderItems`, {
+        items
+      })
       .then((response) => {
         return response.data;
       });
   },
+  setOrderTotalPrice: (
+    totalPrice
+  ) => {
+    return instance
+      .post(`totalOrderPrice`, {
+        totalPrice
+      })
+      .then((response) => {
+        return response.data;
+      });
+  },
+  setOrderTotalCount: (
+    totalCount
+  ) => {
+    return instance
+      .post(`totalOrderCount`, {
+        totalCount
+      })
+      .then((response) => {
+        return response.data;
+      });
+  }
 }
