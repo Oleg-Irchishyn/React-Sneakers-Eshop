@@ -8,6 +8,10 @@ export const getTotalSneakersCount = (state) => {
   return state.app.totalSneakersCount;
 }
 
+export const getSilersList = (state) => {
+  return state.app.sliders;
+}
+
 export const getInitialization = (state) => {
   return state.app.initialized;
 }

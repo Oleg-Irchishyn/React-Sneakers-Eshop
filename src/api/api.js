@@ -24,6 +24,12 @@ export const sneakersAPI = {
         return response.data;
       });
   },
+  getSliders: () => {
+    return instance.get(`sliders`)
+      .then(response => {
+        return response.data;
+      });
+  },
   setFavouriteItems: ({ id,
     imageUrl,
     title,

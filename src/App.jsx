@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { getInitialization } from './redux/selectors/appSelectors';
-import { Preloader, SliderExample } from './components/common';
+import { Preloader } from './components/common';
 import { Header, Main } from './components';
 import { initializeApp } from './redux/reducers/appReducer';
 import cn from 'classnames';
@@ -25,18 +25,9 @@ const App = React.memo(({ initializeApp, initialized }) => {
     return <Preloader />;
   }
 
-  let sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <div className={styles.App}>
       <div className={cn(styles.app_container)}>
-        {/* <SliderExample /> */}
         <Header />
         <Switch>
           <Route exact path="/" render={() => <Main />} />

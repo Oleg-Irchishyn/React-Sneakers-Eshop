@@ -11,6 +11,7 @@ import {
 import { getSneakersList, actions } from '../../redux/reducers/appReducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Slider } from '../common';
 
 const Main = React.memo(
   ({ sneakers, getSneakersList, totalSneakersCount, isLoading, setSearchQuery, searchQuery }) => {
@@ -40,7 +41,9 @@ const Main = React.memo(
 
     return (
       <div className={cn(styles.main)}>
-        <div className={cn(styles.main__slider_section)}></div>
+        <div className={cn(styles.main__slider_section)}>
+          <Slider />
+        </div>
         <div className={cn(styles.main__top_section)}>
           <h1>All Sneakers</h1>
           <div className={cn(styles.search_section)}>

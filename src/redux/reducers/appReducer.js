@@ -6,6 +6,7 @@ const SET_TOTAL_SNEAKERS_COUNT = 'sneakers/app/SET_TOTAL_SNEAKERS_COUNT';
 const SET_IS_LOADED = 'sneakers/app/SET_IS_LOADED';
 const SET_SEARCH_QUERY = 'sneakers/app/FILTER_SNEAKERS_LIST';
 const SET_FAVOURITES_LIST = 'sneakers/app/SET_FAVOURITES_LIST';
+const SET_SLIDERS = 'sneakers/app/SET_SLIDERS'
 const ADD_ITEM_TO_FAVOURITES = 'sneakers/app/ADD_ITEM_TO_FAVOURITES';
 const DELETE_FAVOURITE_ITEM = 'sneakers/app/DELETE_FAVOURITE_ITEM'
 
@@ -15,7 +16,8 @@ let initialState = {
   totalSneakersCount: null,
   isLoading: false,
   searchQuery: '',
-  favourites: []
+  favourites: [],
+  sliders: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -58,6 +60,13 @@ const appReducer = (state = initialState, action) => {
         favourites: action.payload,
       };
     };
+    case SET_SLIDERS: {
+      return {
+        ...state,
+        isLoading: true,
+        sliders: action.payload,
+      };
+    };
     case ADD_ITEM_TO_FAVOURITES: {
       const NewFavouritesList = [...state.favourites, action.payload];
       return {
@@ -93,6 +102,8 @@ export const actions = {
     ({ type: SET_SEARCH_QUERY, payload: value }),
   setFavouritesItemsToList: (obj) =>
     ({ type: SET_FAVOURITES_LIST, payload: obj }),
+  setSliders: (slidersData) =>
+    ({ type: SET_SLIDERS, payload: slidersData }),
   addNewFavouriteItem: (obj) =>
     ({ type: ADD_ITEM_TO_FAVOURITES, payload: obj }),
   deleteFavouriteItem: (id) =>
@@ -117,6 +128,12 @@ export const getFavouritesList = () => async (dispatch) => {
   dispatch(actions.setIsLoaded(false));
 };
 
+export const getSlidersData = () => async (dispatch) => {
+  let data = await sneakersAPI.getSliders();
+  dispatch(actions.setSliders(data.stanSmith));
+  dispatch(actions.setIsLoaded(false));
+};
+
 export const setFavouritesList = (obj) => async (dispatch) => {
   let data = await sneakersAPI.setFavouriteItems(obj
   );
@@ -134,7 +151,8 @@ export const initializeApp = () => (dispatch) => {
   let promises = [
     dispatch(getTotalSneakersItemsCount()),
     dispatch(getSneakersList()),
-    dispatch(getFavouritesList())
+    dispatch(getFavouritesList()),
+    dispatch(getSlidersData())
   ]
   Promise.all([promises]).then(() => {
     dispatch(actions.initializedSuccess());
