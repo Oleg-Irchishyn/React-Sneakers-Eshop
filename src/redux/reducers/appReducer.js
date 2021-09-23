@@ -7,6 +7,7 @@ const SET_IS_LOADED = 'sneakers/app/SET_IS_LOADED';
 const SET_SEARCH_QUERY = 'sneakers/app/FILTER_SNEAKERS_LIST';
 const SET_FAVOURITES_LIST = 'sneakers/app/SET_FAVOURITES_LIST';
 const ADD_ITEM_TO_FAVOURITES = 'sneakers/app/ADD_ITEM_TO_FAVOURITES';
+const DELETE_FAVOURITE_ITEM = 'sneakers/app/DELETE_FAVOURITE_ITEM'
 
 let initialState = {
   initialized: false,
@@ -58,11 +59,21 @@ const appReducer = (state = initialState, action) => {
       };
     };
     case ADD_ITEM_TO_FAVOURITES: {
-      const NewFavouritesLIst = [...state.favourites, action.payload];
+      const NewFavouritesList = [...state.favourites, action.payload];
       return {
         ...state,
         isLoading: true,
-        favourites: NewFavouritesLIst,
+        favourites: NewFavouritesList,
+      };
+    };
+    case DELETE_FAVOURITE_ITEM: {
+      const NewFavouritesList = [...state.favourites].filter((item) => {
+        return item.id !== action.id
+      });
+      return {
+        ...state,
+        isLoading: true,
+        favourites: NewFavouritesList,
       };
     };
     default:
@@ -84,6 +95,8 @@ export const actions = {
     ({ type: SET_FAVOURITES_LIST, payload: obj }),
   addNewFavouriteItem: (obj) =>
     ({ type: ADD_ITEM_TO_FAVOURITES, payload: obj }),
+  deleteFavouriteItem: (id) =>
+    ({ type: DELETE_FAVOURITE_ITEM, id }),
 }
 
 export const getSneakersList = (portionStart = 0, portionLimit = 4) => async (dispatch) => {
@@ -104,7 +117,6 @@ export const getFavouritesList = () => async (dispatch) => {
   dispatch(actions.setIsLoaded(false));
 };
 
-
 export const setFavouritesList = (obj) => async (dispatch) => {
   let data = await sneakersAPI.setFavouriteItems(obj
   );
@@ -112,10 +124,17 @@ export const setFavouritesList = (obj) => async (dispatch) => {
   dispatch(actions.setIsLoaded(false));
 };
 
+export const removeFavouriteItemSuccess = (id) => async (dispatch) => {
+  await sneakersAPI.removeFavouriteItem(id);
+  dispatch(actions.deleteFavouriteItem(id));
+  dispatch(actions.setIsLoaded(false));
+};
+
 export const initializeApp = () => (dispatch) => {
   let promises = [
     dispatch(getTotalSneakersItemsCount()),
     dispatch(getSneakersList()),
+    dispatch(getFavouritesList())
   ]
   Promise.all([promises]).then(() => {
     dispatch(actions.initializedSuccess());

@@ -11,7 +11,6 @@ import {
 import { getSneakersList, actions } from '../../redux/reducers/appReducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Preloader, SekeletonPrelaoder } from '../common/';
 
 const Main = React.memo(
   ({ sneakers, getSneakersList, totalSneakersCount, isLoading, setSearchQuery, searchQuery }) => {
@@ -39,10 +38,6 @@ const Main = React.memo(
       localStorage.setItem('sneakersListItems', JSON.stringify(sneakers));
     }, [loadMoreItems]);
 
-    if (isLoading) {
-      return <Preloader />;
-    }
-
     return (
       <div className={cn(styles.main)}>
         <div className={cn(styles.main__slider_section)}></div>
@@ -60,13 +55,9 @@ const Main = React.memo(
         <div className={cn(styles.main__content_section)}>
           <div className={cn(styles.section_items)}>
             {sneakers &&
-              filteredSnekaers.map((elem, index) => {
+              filteredSnekaers.map((elem) => {
                 {
-                  return isLoading ? (
-                    <SekeletonPrelaoder key={`${index}_yo`} />
-                  ) : (
-                    <SneakersItem key={elem.id} {...elem} />
-                  );
+                  return <SneakersItem key={elem.id} {...elem} isLoading={isLoading} />;
                 }
               })}
           </div>

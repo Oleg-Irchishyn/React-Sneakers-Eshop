@@ -6,14 +6,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FavouritesItem } from '..';
 import emptyFAvouritesSmile from '../../assets/images/favourites-empty-icon.svg';
-import { getFavouritesItemList } from '../../redux/selectors/appSelectors';
-import { getFavouritesList } from '../../redux/reducers/appReducer';
+import { getFavouritesItemList, getIsLoading } from '../../redux/selectors/appSelectors';
+import { removeFavouriteItemSuccess } from '../../redux/reducers/appReducer';
 
-const Favourites = React.memo(({ items, getFavouritesList }) => {
-  React.useEffect(() => {
-    getFavouritesList();
-  }, []);
-
+const Favourites = React.memo(({ items, removeFavouriteItemSuccess, isLoading }) => {
   return (
     <div className={cn(styles.favourites__section)}>
       <div className={cn(styles.favourites__section_title_wrapper)}>
@@ -27,11 +23,16 @@ const Favourites = React.memo(({ items, getFavouritesList }) => {
       {items && items.length > 0 ? (
         <div className={cn(styles.favourites__section_items)}>
           {items.map((item, index) => (
-            <FavouritesItem key={`${item}_${index}`} {...item} />
+            <FavouritesItem
+              key={`${item}_${index}`}
+              {...item}
+              isLoading={isLoading}
+              removeFavouriteItemSuccess={removeFavouriteItemSuccess}
+            />
           ))}
         </div>
       ) : null}
-      {items && items.length > 0 ? (
+      {!items.length ? (
         <div className={cn(styles.favourites__section_content_empty)}>
           <img src={emptyFAvouritesSmile} alt="empty facourites icon" />
           <p>No favourites</p>
@@ -47,6 +48,7 @@ const Favourites = React.memo(({ items, getFavouritesList }) => {
 
 const mapStateToProps = (state) => ({
   items: getFavouritesItemList(state),
+  isLoading: getIsLoading(state),
 });
 
-export default compose(connect(mapStateToProps, { getFavouritesList }))(Favourites);
+export default compose(connect(mapStateToProps, { removeFavouriteItemSuccess }))(Favourites);

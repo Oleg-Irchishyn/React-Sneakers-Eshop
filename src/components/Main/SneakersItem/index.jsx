@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as cartActions } from '../../../redux/reducers/cartReducer';
 import { setFavouritesList } from '../../../redux/reducers/appReducer';
+import { Preloader } from '../../common';
 
 const SneakersItem = React.memo(
   ({
@@ -13,6 +14,7 @@ const SneakersItem = React.memo(
     addSneakersToCart,
     removeCartItem,
     setFavouritesList,
+    isLoading,
     ...restProps
   }) => {
     const { id, imageUrl, title, price } = restProps;
@@ -36,8 +38,15 @@ const SneakersItem = React.memo(
       };
       addSneakersToCart(object);
     };
+
+    if (isLoading) {
+      return <Preloader />;
+    }
     return (
-      <div className={cn(styles.item)}>
+      <div
+        className={cn(styles.item, {
+          [styles.loading]: isLoading === true,
+        })}>
         <div className={cn(styles.item__favourite_icon)} onClick={() => addItemToFavourites()}>
           {<img src={favouriteIcon} alt="add to favourites" />}
         </div>

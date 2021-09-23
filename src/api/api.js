@@ -24,10 +24,16 @@ export const sneakersAPI = {
         return response.data;
       });
   },
-  setFavouriteItems: (favItem) => {
+  setFavouriteItems: ({ id,
+    imageUrl,
+    title,
+    price }) => {
     return instance
       .post(`favourites/`, {
-        favItem
+        id,
+        imageUrl,
+        title,
+        price
       })
       .then((response) => response.data);
   },
@@ -63,5 +69,8 @@ export const sneakersAPI = {
       .then((response) => {
         return response.data;
       });
-  }
+  },
+  removeFavouriteItem: (id) => {
+    return instance.delete(`favourites/` + id).then((response) => response.data);
+  },
 }
