@@ -17,7 +17,7 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        background: #fff;
+        background: $color-white;
         box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
         max-width: 26%;
         width: 100%;
@@ -28,7 +28,7 @@
             position: absolute;
             right: calc(0% + 30px);
             top: calc(0% + 30px);
-            background: #ffffff;
+            background: $color-white;
             border: 1px solid #dbdbdb;
             border-radius: 8px;
             width: 32px;
@@ -179,7 +179,7 @@
                 content: "\21D0";
                 font-size: 16px;
                 line-height: 1;
-                color: #fff;
+                color: $color-white;
                 transform: translate(-100%, 0);
                 top: 50%;
                 left: 0;
@@ -213,7 +213,7 @@
         font-size: 16px;
         line-height: 19px;
         text-align: center;
-        color: #ffffff;
+        color: $color-white;
         cursor: pointer;
         outline: none;
         transition: 0.2s ease;
@@ -233,7 +233,7 @@
             content: "\21D2";
             font-size: 16px;
             line-height: 1;
-            color: #fff;
+            color: $color-white;
             transform: translate(100%, 0);
             top: 50%;
             left: 100%;

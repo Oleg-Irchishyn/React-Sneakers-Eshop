@@ -100,7 +100,7 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                background: #ffffff;
+                background: $color-white;
                 border: 1px solid #f3f3f3;
                 box-sizing: border-box;
                 border-radius: 40px;
@@ -151,7 +151,7 @@
                     position: absolute;
                     left: calc(0% + 30px);
                     top: calc(0% + 30px);
-                    background: #ffffff;
+                    background: $color-white;
                     border: 1px solid #eee;
                     box-sizing: border-box;
                     border-radius: 7px;
@@ -236,7 +236,7 @@
                             display: inline-flex;
                             flex-wrap: wrap;
                             position: relative;
-                            background: #ffffff;
+                            background: $color-white;
                             border: 1px solid #f2f2f2;
                             box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
                             box-sizing: border-box;
@@ -258,7 +258,7 @@
                                 box-shadow: none;
                                 &::before,
                                 &::after {
-                                    background: #fff;
+                                    background: $color-white;
                                 }
                             }
                             &::before {
@@ -315,7 +315,7 @@
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    color: #ffffff;
+    color: $color-white;
     cursor: pointer;
     outline: none;
     transition: 0.2s ease;

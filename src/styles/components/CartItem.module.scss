@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    background: #ffffff;
+    background: $color-white;
     border: 1px solid #f3f3f3;
     box-sizing: border-box;
     border-radius: 20px;
@@ -63,7 +63,7 @@
             right: 0;
             top: calc(0% - 5px);
             transform: translate(-50%, -50%);
-            background: #ffffff;
+            background: $color-white;
             border: 1px solid #dbdbdb;
             border-radius: 8px;
             width: 32px;
