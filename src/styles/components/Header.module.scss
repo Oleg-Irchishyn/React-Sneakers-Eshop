@@ -29,7 +29,7 @@
     }
     @include xs-devices {
         max-width: 90%;
-        padding: 40px 15px 40px 15px;
+        padding: 15px;
     }
 
     .header {
@@ -40,18 +40,27 @@
         align-items: center;
         width: 100%;
         max-width: 100%;
+        @include xs-devices {
+            justify-content: center;
+        }
         a {
             text-decoration: none;
         }
         &__logo {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-end;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
             padding: 0 0 0 56px;
             position: relative;
             font-family: $font-secondary;
+            @include xs-devices {
+                width: 100%;
+                margin-bottom: 10px;
+                flex-direction: row;
+                padding: 15px 0 0 0;
+            }
             img {
                 max-width: 100%;
                 width: 40px;
@@ -60,6 +69,11 @@
                 left: 0;
                 top: 0;
                 object-fit: contain;
+                @include xs-devices {
+                    transform: translate(-50%, -50%);
+                    left: 50%;
+                    top: calc(0% - 15px);
+                }
             }
         }
         &__logo_title {
@@ -86,6 +100,10 @@
             margin-left: auto;
             cursor: pointer;
             padding: 10px;
+
+            @include xs-devices {
+                margin-left: 0;
+            }
 
             .header__cart_amount {
                 font-style: normal;

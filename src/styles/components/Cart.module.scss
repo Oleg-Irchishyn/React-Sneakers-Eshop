@@ -13,6 +13,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+
     &__content {
         display: flex;
         flex-direction: column;
@@ -24,6 +25,22 @@
         height: 100%;
         padding: 30px;
         justify-content: space-between;
+
+        @include lg-devices {
+            max-width: 40%;
+        }
+
+        @include md-devices {
+            max-width: 40%;
+        }
+
+        @include sm-devices {
+            max-width: 50%;
+        }
+
+        @include xs-devices {
+            max-width: 75%;
+        }
         .close_btn {
             position: absolute;
             right: calc(0% + 30px);
