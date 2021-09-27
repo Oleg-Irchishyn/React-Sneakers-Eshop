@@ -36,7 +36,7 @@ const Main = React.memo(
     };
 
     React.useEffect(() => {
-      localStorage.setItem('sneakersListItems', JSON.stringify(sneakers));
+      sessionStorage.setItem('sneakersListItems', JSON.stringify(sneakers));
     }, [loadMoreItems]);
 
     return (

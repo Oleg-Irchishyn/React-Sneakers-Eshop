@@ -12,7 +12,7 @@ const DELETE_FAVOURITE_ITEM = 'sneakers/app/DELETE_FAVOURITE_ITEM'
 
 let initialState = {
   initialized: false,
-  sneakers: JSON.parse(localStorage.getItem('sneakersListItems')) || [],
+  sneakers: JSON.parse(sessionStorage.getItem('sneakersListItems')) || [],
   totalSneakersCount: null,
   isLoading: false,
   searchQuery: '',

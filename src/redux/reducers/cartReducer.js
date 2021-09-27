@@ -8,9 +8,9 @@ const MINUS_CART_ITEM = 'sneakers/cart/MINUS_CART_ITEM';
 
 
 let initialState = {
-    items: JSON.parse(localStorage.getItem('sneakersCartItems')) || {},
-    totalPrice: JSON.parse(localStorage.getItem('sneakersCartItemsTotalPrice')) || 0,
-    totalCount: JSON.parse(localStorage.getItem('sneakersCartItemsTotalCount')) || 0
+    items: JSON.parse(sessionStorage.getItem('sneakersCartItems')) || {},
+    totalPrice: JSON.parse(sessionStorage.getItem('sneakersCartItemsTotalPrice')) || 0,
+    totalCount: JSON.parse(sessionStorage.getItem('sneakersCartItemsTotalCount')) || 0
 }
 
 const getTotalPrice = arr => {

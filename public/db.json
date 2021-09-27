@@ -110,14 +110,7 @@
       "price": 789.56
     }
   ],
-  "favourites": [
-    {
-      "id": 1,
-      "imageUrl": "/images/2.png",
-      "title": "Nike Air Max 270",
-      "price": 410.69
-    }
-  ],
+  "favourites": [],
   "totalOrderItems": {
     "items": {
       "0": {

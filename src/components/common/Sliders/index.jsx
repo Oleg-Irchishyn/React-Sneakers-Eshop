@@ -15,7 +15,7 @@ const SliderContainer = React.memo(({ sliders }) => {
     dots: true,
     arrows: false,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 10000,
     pauseOnHover: true,
     pauseOnFocus: true,

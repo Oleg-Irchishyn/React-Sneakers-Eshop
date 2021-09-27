@@ -20,8 +20,8 @@ const Header = React.memo(({ totalCount, totalPrice, items, clearCart, setOrderS
   const itemsCount = items.length;
   const fixedTotalPrice = Number(totalPrice.toFixed(2));
   React.useEffect(() => {
-    localStorage.setItem('sneakersCartItemsTotalPrice', JSON.stringify(totalPrice));
-    localStorage.setItem('sneakersCartItemsTotalCount', JSON.stringify(totalCount));
+    sessionStorage.setItem('sneakersCartItemsTotalPrice', JSON.stringify(totalPrice));
+    sessionStorage.setItem('sneakersCartItemsTotalCount', JSON.stringify(totalCount));
   });
   const [visibleCart, toggleVisibleCart] = React.useState(false);
   const handleCartVisibility = () => {

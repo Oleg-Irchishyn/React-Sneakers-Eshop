@@ -11,6 +11,7 @@ import {
 import { CartItem } from '../index';
 import { NavLink, Route } from 'react-router-dom';
 import emptyCart from '../../assets/images/cart-empty.png';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const Cart = React.memo(({ toggleVisibleCart, items, totalCount, totalPrice }) => {
   const addedCartItems = Object.keys(items).map((item) => {
@@ -31,9 +32,9 @@ const Cart = React.memo(({ toggleVisibleCart, items, totalCount, totalPrice }) =
   };
 
   React.useEffect(() => {
-    localStorage.setItem('sneakersCartItems', JSON.stringify(items));
-    localStorage.setItem('sneakersCartItemsTotalPrice', JSON.stringify(totalPrice));
-    localStorage.setItem('sneakersCartItemsTotalCount', JSON.stringify(totalCount));
+    sessionStorage.setItem('sneakersCartItems', JSON.stringify(items));
+    sessionStorage.setItem('sneakersCartItemsTotalPrice', JSON.stringify(totalPrice));
+    sessionStorage.setItem('sneakersCartItemsTotalCount', JSON.stringify(totalCount));
   });
 
   React.useEffect(() => {
@@ -50,16 +51,26 @@ const Cart = React.memo(({ toggleVisibleCart, items, totalCount, totalPrice }) =
         <div className={cn(styles.close_btn)} onClick={() => toggleVisibleCart(false)}></div>
         {totalCount && totalCount > 0 ? (
           <div className={cn(styles.cart__items_wrapper)}>
-            <div className={cn(styles.cart__items)}>
-              {addedCartItems.map((item, index) => (
-                <CartItem
-                  key={`${item}_${index}`}
-                  {...item}
-                  totalPrice={items[item.id].totalPrice}
-                  totalCount={items[item.id].items.length}
-                />
-              ))}
-            </div>
+            <Scrollbars
+              style={{ width: '100%', height: '100%' }}
+              thumbSize={70}
+              renderThumbVertical={(props) => (
+                <div {...props} className={cn(styles.thumb_vertical)} />
+              )}
+              renderThumbHorizontal={(props) => (
+                <div {...props} className={cn(styles.thumb_horizontal)} />
+              )}>
+              <div className={cn(styles.cart__items)}>
+                {addedCartItems.map((item, index) => (
+                  <CartItem
+                    key={`${item}_${index}`}
+                    {...item}
+                    totalPrice={items[item.id].totalPrice}
+                    totalCount={items[item.id].items.length}
+                  />
+                ))}
+              </div>
+            </Scrollbars>
           </div>
         ) : null}
         {totalCount && totalCount > 0 ? (
