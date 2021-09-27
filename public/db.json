@@ -112,22 +112,10 @@
   ],
   "favourites": [
     {
-      "id": 2,
-      "imageUrl": "/images/3.png",
-      "title": " Nike Blazer Mid Suede White",
-      "price": 313.77
-    },
-    {
-      "id": 8,
-      "imageUrl": "/images/9.png",
-      "title": "Nike Blazer Mid Suede Green",
-      "price": 676.2
-    },
-    {
-      "id": 6,
-      "imageUrl": "/images/7.png",
-      "title": "Jordan Air Jordan 11",
-      "price": 1000
+      "id": 1,
+      "imageUrl": "/images/2.png",
+      "title": "Nike Air Max 270",
+      "price": 410.69
     }
   ],
   "totalOrderItems": {

@@ -150,6 +150,9 @@
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04);
         transition: 0.4s ease;
         cursor: pointer;
+        @include xs-devices {
+            display: none;
+        }
         &:hover {
             @media (min-width: 992px) {
                 transition: 0.4s ease;

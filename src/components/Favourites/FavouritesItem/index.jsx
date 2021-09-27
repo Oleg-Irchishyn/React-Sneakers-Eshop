@@ -7,7 +7,9 @@ import { Preloader } from '../../common';
 const FavouritesItem = React.memo(
   ({ id, imageUrl, title, price, removeFavouriteItemSuccess, isLoading }) => {
     const handleDeleteItem = (id) => {
-      removeFavouriteItemSuccess(id);
+      if (window.confirm('Do you want to remove an item from favourites?')) {
+        removeFavouriteItemSuccess(id);
+      }
     };
 
     if (isLoading) {

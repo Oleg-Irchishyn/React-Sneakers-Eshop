@@ -58,6 +58,11 @@
         align-items: stretch;
         width: 100%;
         padding: 40px 0 0 0;
+        @include xs-devices {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
     }
     &_content_empty {
         flex: 1;
