@@ -110,7 +110,26 @@
       "price": 789.56
     }
   ],
-  "favourites": [],
+  "favourites": [
+    {
+      "id": 2,
+      "imageUrl": "/images/3.png",
+      "title": " Nike Blazer Mid Suede White",
+      "price": 313.77
+    },
+    {
+      "id": 3,
+      "imageUrl": "/images/4.png",
+      "title": "Puma X Aka Boku Future Rider",
+      "price": 600.99
+    },
+    {
+      "id": 1,
+      "imageUrl": "/images/2.png",
+      "title": "Nike Air Max 270",
+      "price": 410.69
+    }
+  ],
   "totalOrderItems": {
     "items": {
       "0": {
