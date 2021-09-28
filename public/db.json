@@ -131,46 +131,12 @@
     }
   ],
   "totalOrderItems": {
-    "items": {
-      "0": {
-        "items": [
-          {
-            "id": 0,
-            "imageUrl": "/images/1.png",
-            "title": "Nike Blazer Mid Suede",
-            "price": 500.59
-          }
-        ],
-        "totalPrice": 500.59
-      },
-      "1": {
-        "items": [
-          {
-            "id": 1,
-            "imageUrl": "/images/2.png",
-            "title": "Nike Air Max 270",
-            "price": 410.69
-          }
-        ],
-        "totalPrice": 410.69
-      },
-      "2": {
-        "items": [
-          {
-            "id": 2,
-            "imageUrl": "/images/3.png",
-            "title": " Nike Blazer Mid Suede White",
-            "price": 313.77
-          }
-        ],
-        "totalPrice": 313.77
-      }
-    }
+    "items": {}
   },
   "totalOrderCount": {
     "totalCount": 0
   },
   "totalOrderPrice": {
-    "totalPrice": 1225.05
+    "totalPrice": 0
   }
 }

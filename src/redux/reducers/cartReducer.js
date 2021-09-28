@@ -43,6 +43,7 @@ const cartReducer = (state = initialState, action) => {
             };
         }
         case CLEAR_CART:
+            sessionStorage.clear();
             return {
                 items: {},
                 totalPrice: 0,
