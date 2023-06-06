@@ -10,3 +10,4 @@ export function withSuspense(WrappedComponent) {
     );
   };
 }
+// updating project
