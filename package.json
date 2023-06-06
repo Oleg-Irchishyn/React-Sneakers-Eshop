@@ -1,6 +1,10 @@
 {
   "name": "react-sneakers-eshop",
   "version": "0.1.0",
+   "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
+  },
   "private": true,
   "homepage": "https://react-sneakers-eshop.herokuapp.com",
   "dependencies": {
